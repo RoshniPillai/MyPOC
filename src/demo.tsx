@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -100,6 +101,15 @@ export default function DemoPage() {
       typeof value === "string" ? value.split(",") : value
     );
   };
+  /*for chip */
+  const handleClick = () => {
+    console.info("You clicked the Chip.");
+  };
+
+  const handleDelete = () => {
+    console.info("You clicked the delete icon.");
+  };
+
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -125,7 +135,12 @@ export default function DemoPage() {
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                 {selected.map((value) => (
-                  <Chip key={value} label={value} />
+                  <Chip
+                    key={value}
+                    label={value}
+                    onClick={handleClick}
+                    onDelete={handleDelete}
+                  />
                 ))}
               </Box>
             )}
@@ -206,6 +221,19 @@ export default function DemoPage() {
           </Select>
         </FormControl>
       </div>
+      <Stack direction="row" spacing={1}>
+        <Chip
+          label="Clickable Deletable"
+          onClick={handleClick}
+          onDelete={handleDelete}
+        />
+        <Chip
+          label="Clickable Deletable"
+          variant="outlined"
+          onClick={handleClick}
+          onDelete={handleDelete}
+        />
+      </Stack>
     </>
   );
 }
