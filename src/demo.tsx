@@ -26,7 +26,7 @@ const MenuProps = {
 
 const names = [
   "Oliver ",
-  "Van",
+  "Wilson",
   "April",
   "Ralph ",
   "Omar",
@@ -36,6 +36,15 @@ const names = [
   "Virginia ",
   "Kelly"
 ];
+const eventnames = [
+  "Assignments & Circuits ",
+  "Map Editing",
+  "Notifications",
+  "Asset Health ",
+  "Assset Config",
+  "User Config"
+];
+const entitynames = ["E1 ", "E2", "E3", "E4"];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
@@ -46,12 +55,40 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 export default function DemoPage() {
+  const theme = useTheme();
+  /* for calender */
   const [value, setValue] = React.useState<Dayjs | null>(
     dayjs("2023-04-17T15:30")
   );
   console.log("new date selected is", value);
 
-  const theme = useTheme();
+  /* for select boxes */
+  const [eventName, setEventName] = React.useState<string[]>([]);
+
+  const handleChangeEventName = (
+    event: SelectChangeEvent<typeof eventName>
+  ) => {
+    const {
+      target: { value }
+    } = event;
+    setEventName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const [entityName, setEntityName] = React.useState<string[]>([]);
+
+  const handleChangeEntityName = (
+    event: SelectChangeEvent<typeof entityName>
+  ) => {
+    const {
+      target: { value }
+    } = event;
+    setEntityName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
   const [personName, setPersonName] = React.useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
@@ -76,14 +113,14 @@ export default function DemoPage() {
       </LocalizationProvider>
       <div>
         <FormControl sx={{ m: 1, width: 300 }}>
-          Select users
+          Select type of event or activity
           {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
           <Select
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"
             multiple
-            value={personName}
-            onChange={handleChange}
+            value={eventName}
+            onChange={handleChangeEventName}
             // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -94,11 +131,11 @@ export default function DemoPage() {
             )}
             MenuProps={MenuProps}
           >
-            {names.map((name) => (
+            {eventnames.map((name) => (
               <MenuItem
                 key={name}
                 value={name}
-                style={getStyles(name, personName, theme)}
+                style={getStyles(name, eventName, theme)}
               >
                 {name}
               </MenuItem>
@@ -108,14 +145,13 @@ export default function DemoPage() {
       </div>
       <div>
         <FormControl sx={{ m: 1, width: 300 }}>
-          Select users
-          {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
+          Select entity or asset
           <Select
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"
             multiple
-            value={personName}
-            onChange={handleChange}
+            value={entityName}
+            onChange={handleChangeEntityName}
             // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -126,11 +162,11 @@ export default function DemoPage() {
             )}
             MenuProps={MenuProps}
           >
-            {names.map((name) => (
+            {entitynames.map((name) => (
               <MenuItem
                 key={name}
                 value={name}
-                style={getStyles(name, personName, theme)}
+                style={getStyles(name, entityName, theme)}
               >
                 {name}
               </MenuItem>
