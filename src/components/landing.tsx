@@ -22,6 +22,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
 
+import DetailPage from "./detail";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const theme = createTheme();
@@ -241,18 +243,15 @@ export default function LandingPage() {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <DemoContainer
                             sx={{
-                              // backgroundColor: "#616161",
                               color: "#fff",
                               borderRadius: 8,
                               padding: 0
-                              // fontSize: "3.875rem",
                             }}
                             components={["DateTimePicker", "DateTimePicker"]}
                           >
                             <DateTimePicker
                               sx={{
                                 width: 300,
-                                //fontSize: "3.875rem",
                                 color: "success.main",
                                 "& .MuiSvgIcon-root": { color: "#ffffff" }
                               }}
@@ -473,7 +472,8 @@ export default function LandingPage() {
                 </Box>
               </>
             ) : (
-              <h1> detail screen</h1>
+              // <h1> detail screen</h1>
+              <DetailPage />
             )}
           </Box>
         </Box>
