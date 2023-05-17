@@ -196,7 +196,7 @@ export default function LandingPage() {
     console.info("You clicked the delete icon.");
   };
   /* start query button */
-  const [value, setValue] = React.useState(true);
+  const [value, setValue] = React.useState(false);
   return (
     <React.Fragment>
       <CssBaseline />
@@ -213,15 +213,15 @@ export default function LandingPage() {
               AUDIT
             </Typography>
           </Box>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            minHeight="100vh"
-            sx={{ color: "#ffffff" }}
-          >
-            {value === true ? (
-              <>
+          {value === true ? (
+            <>
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                minHeight="100vh"
+                sx={{ color: "#ffffff" }}
+              >
                 <Box
                 // sx={{ width: "100%" }}
                 >
@@ -470,12 +470,12 @@ export default function LandingPage() {
                     </Button>
                   </Stack>
                 </Box>
-              </>
-            ) : (
-              // <h1> detail screen</h1>
-              <DetailPage />
-            )}
-          </Box>
+              </Box>
+            </>
+          ) : (
+            // <h1> detail screen</h1>
+            <DetailPage />
+          )}
         </Box>
       </Container>
     </React.Fragment>
