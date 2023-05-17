@@ -66,36 +66,6 @@ export default function DetailPage() {
           }}
         >
           <Item1 sx={{ width: "70%" }}>
-            <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  p: 1,
-                  m: 1,
-                  bgcolor: "background.paper",
-                  borderRadius: 1
-                }}
-              >
-                <Item>Item 1</Item>
-                <Item>Item 2</Item>
-                <Item>Item 3</Item>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  p: 1,
-                  m: 1,
-                  bgcolor: "background.paper",
-                  borderRadius: 1
-                }}
-              >
-                <Item>Item 1</Item>
-                <Item>Item 2</Item>
-                <Item>Item 3</Item>
-              </Box>
-            </Box>
             <Box
               sx={{
                 display: "flex",
