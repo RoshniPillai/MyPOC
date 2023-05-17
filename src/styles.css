@@ -3,7 +3,7 @@
   text-align: center;
 }
 .heading {
-  /* font-family: "Roboto"; */
+  font-family: "Roboto";
   font-size: 16px;
   font-weight: 700;
   line-height: 19px;
@@ -11,10 +11,9 @@
   text-align: left;
 }
 .subHeading {
-  font-family: Roboto;
-  font-size: 26px;
+  font-family: "Roboto";
+  font-style: normal;
   font-weight: 700;
+  font-size: 26px;
   line-height: 30px;
-  letter-spacing: 0em;
-  text-align: left;
 }
