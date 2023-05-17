@@ -17,8 +17,82 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import { styled } from "@mui/material/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { alpha } from "@mui/material/styles";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
+const theme = createTheme();
+const useStyles = makeStyles({
+  select: {
+    "& ul": {
+      padding: 0
+    },
+    "& li": {
+      fontSize: 62
+    }
+  },
+
+  root: {
+    height: 30,
+    //width: 200,
+    paddingTop: 0,
+    margin: 0,
+    borderRadius: 20,
+    color: "#fff !important",
+    //padding: '10px',
+    //paddingLeft: 20,
+    backgroundColor: "#616161 !important",
+    "& ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list": {
+      // paddingTop: "0 !important"
+    },
+    "& .css-6hp17o-MuiList-root-MuiMenu-list": {
+      //paddingTop: "100 !important"
+    },
+    "&:hover": {
+      color: "#fff",
+      backgroundColor: "#148291 !important"
+    },
+    "&:selected": {
+      color: "#fff"
+      // backgroundColor: "red"
+    },
+    "& .css-w6qulv-MuiInputBase-root .MuiInputBase-input:focus": {
+      //  boxShadow: 0
+    }
+  },
+  root1: {
+    backgroundColor: "#616161",
+    "&:hover": {
+      // color: "red",
+      // backgroundColor: "blue"
+    },
+    "& .MuiOutlinedInput-input": {
+      color: "#ffffff"
+    },
+    "&.MuiInputAdornment-positionEnd": {
+      color: "#ffffff"
+    },
+    //MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root
+    "& .MuiInputLabel-root": {
+      // color: "green"
+    },
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      //  borderColor: "green"
+    }
+  },
+  margin: {
+    margin: theme.spacing(1)
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3)
+  },
+  textField: {
+    width: "25ch"
+  }
+});
 const MenuProps = {
   PaperProps: {
     style: {
@@ -61,6 +135,7 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 }
 export default function LandingPage() {
   const theme = useTheme();
+  const classes = useStyles();
 
   /* for calender */
   const [fromDate, setFromDate] = React.useState<Dayjs | null>(
@@ -72,6 +147,52 @@ export default function LandingPage() {
   );
   console.log("new date selected is", ToDate);
 
+  /* for select boxes */
+  const [eventName, setEventName] = React.useState<string[]>([]);
+
+  const handleChangeEventName = (
+    event: SelectChangeEvent<typeof eventName>
+  ) => {
+    const {
+      target: { value }
+    } = event;
+    setEventName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const [entityName, setEntityName] = React.useState<string[]>([]);
+
+  const handleChangeEntityName = (
+    event: SelectChangeEvent<typeof entityName>
+  ) => {
+    const {
+      target: { value }
+    } = event;
+    setEntityName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const [personName, setPersonName] = React.useState<string[]>([]);
+
+  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const {
+      target: { value }
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  /*for chip */
+  const handleClick = () => {
+    console.info("You clicked the Chip.");
+  };
+
+  const handleDelete = () => {
+    console.info("You clicked the delete icon.");
+  };
   /* start query button */
   const [value, setValue] = React.useState(true);
   return (
@@ -82,18 +203,11 @@ export default function LandingPage() {
           <Box
             sx={{
               background: "#148291",
-              borderRadius: "4px 4px 0px 0px",
+              // borderRadius: "4px 4px 0px 0px",
               height: "30px"
             }}
           >
-            <Typography
-              className="heading"
-              variant="subtitle1"
-              // display="block"
-              gutterBottom
-              sx={{ margin: 0, height: "", padding: 1, color: "#fff" }}
-              //
-            >
+            <Typography className="heading" sx={{ pl: 1, color: "#ffffff" }}>
               AUDIT
             </Typography>
           </Box>
@@ -109,7 +223,10 @@ export default function LandingPage() {
                 <Box
                 // sx={{ width: "100%" }}
                 >
-                  <Stack spacing={2}>
+                  <Stack
+                    spacing={2}
+                    sx={{ border: "1px solid red", textAlign: "left" }}
+                  >
                     <Typography className="subHeading" gutterBottom>
                       New audit query
                     </Typography>
@@ -123,9 +240,23 @@ export default function LandingPage() {
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <DemoContainer
+                            sx={{
+                              // backgroundColor: "#616161",
+                              color: "#fff",
+                              borderRadius: 8,
+                              padding: 0
+                              // fontSize: "3.875rem",
+                            }}
                             components={["DateTimePicker", "DateTimePicker"]}
                           >
                             <DateTimePicker
+                              sx={{
+                                width: 300,
+                                //fontSize: "3.875rem",
+                                color: "success.main",
+                                "& .MuiSvgIcon-root": { color: "#ffffff" }
+                              }}
+                              className={classes.root1}
                               //  label="Controlled picker"
                               value={fromDate}
                               onChange={(newValue) => setFromDate(newValue)}
@@ -139,9 +270,23 @@ export default function LandingPage() {
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <DemoContainer
+                            sx={{
+                              // backgroundColor: "pink",
+                              color: "#fff",
+                              borderRadius: 8,
+                              padding: 0
+                            }}
                             components={["DateTimePicker", "DateTimePicker"]}
                           >
                             <DateTimePicker
+                              sx={{
+                                width: 300,
+                                color: "success.main",
+                                "& .MuiSvgIcon-root": {
+                                  color: "#ffffff"
+                                }
+                              }}
+                              className={classes.root1}
                               //  label="Controlled picker"
                               value={ToDate}
                               onChange={(newValue) => setToDate(newValue)}
@@ -150,6 +295,171 @@ export default function LandingPage() {
                         </LocalizationProvider>
                       </Stack>
                     </Stack>
+                    <FormControl sx={{ m: 1, width: 300 }}>
+                      <Typography className="title" gutterBottom>
+                        Select type of event or activity
+                      </Typography>
+                      {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
+                      <Select
+                        sx={{
+                          backgroundColor: alpha(
+                            theme.palette.common.white,
+                            0.15
+                          )
+                        }}
+                        labelId="demo-multiple-chip-label"
+                        id="demo-multiple-chip"
+                        multiple
+                        value={eventName}
+                        onChange={handleChangeEventName}
+                        // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexWrap: "wrap",
+                              gap: 0.5
+                            }}
+                          >
+                            {selected.map((value) => (
+                              <Chip
+                                key={value}
+                                label={value}
+                                onClick={handleClick}
+                                onDelete={handleDelete}
+                                sx={{
+                                  backgroundColor: "#148291",
+                                  color: "#fff"
+                                }}
+                              />
+                            ))}
+                          </Box>
+                        )}
+                        MenuProps={MenuProps}
+                      >
+                        {eventnames.map((name) => (
+                          <MenuItem
+                            key={name}
+                            value={name}
+                            style={getStyles(name, eventName, theme)}
+                          >
+                            {name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <FormControl sx={{ m: 1, width: 300 }}>
+                      <Typography className="title" gutterBottom>
+                        Select entity or asset
+                      </Typography>
+                      <Select
+                        sx={{
+                          backgroundColor: alpha(
+                            theme.palette.common.white,
+                            0.15
+                          )
+                        }}
+                        labelId="demo-multiple-chip-label"
+                        id="demo-multiple-chip"
+                        multiple
+                        value={entityName}
+                        onChange={handleChangeEntityName}
+                        // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexWrap: "wrap",
+                              gap: 0.5
+                            }}
+                          >
+                            {selected.map((value) => (
+                              <Chip
+                                key={value}
+                                label={value}
+                                sx={{
+                                  backgroundColor: "#148291",
+                                  color: "#fff"
+                                }}
+                                onClick={handleClick}
+                                onDelete={handleDelete}
+                              />
+                            ))}
+                          </Box>
+                        )}
+                        MenuProps={MenuProps}
+                      >
+                        {entitynames.map((name) => (
+                          <MenuItem
+                            key={name}
+                            value={name}
+                            style={getStyles(name, entityName, theme)}
+                          >
+                            {name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                    <FormControl sx={{ m: 1, width: 300 }}>
+                      <Typography className="title" gutterBottom>
+                        Select users
+                      </Typography>
+                      {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
+                      <Select
+                        sx={{
+                          backgroundColor: alpha(
+                            theme.palette.common.white,
+                            0.15
+                          )
+                          // "&:hover": {
+                          //   backgroundColor: alpha(
+                          //     theme.palette.common.white,
+                          //     0.25
+                          //   )
+                          // }
+                        }}
+                        labelId="demo-multiple-chip-label"
+                        id="demo-multiple-chip"
+                        multiple
+                        value={personName}
+                        onChange={handleChange}
+                        // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexWrap: "wrap",
+                              gap: 0.5
+                            }}
+                          >
+                            {selected.map((value) => (
+                              <Chip
+                                key={value}
+                                label={value}
+                                sx={{
+                                  backgroundColor: "#148291",
+                                  color: "#fff"
+                                }}
+                                onClick={handleClick}
+                                onDelete={handleDelete}
+                              />
+                            ))}
+                          </Box>
+                        )}
+                        MenuProps={MenuProps}
+                      >
+                        {names.map((name) => (
+                          <MenuItem
+                            key={name}
+                            value={name}
+                            style={getStyles(name, personName, theme)}
+                          >
+                            {name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                     <Button
                       type="submit"
                       //fullWidth
