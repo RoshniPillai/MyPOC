@@ -272,330 +272,278 @@ export default function LandingPage() {
     console.info("You clicked the delete icon.");
   };
   /* start query button */
-  const [value, setValue] = React.useState(false);
+  const [value, setValue] = React.useState(true);
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* <Container maxWidth="lg" sx={{ bgcolor: "pink" }}> */}
-
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#000"
-        }}
-      >
-        <Box
-          sx={{
-            bgcolor: "#232425",
-            width: "80%",
-            minHeight: "100vh",
-            maxHeight: "100vh"
-          }}
-        >
+      {value === true ? (
+        <>
           <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            //minHeight="80vh"
             sx={{
-              background: "#148291",
-              borderRadius: "4px 4px 0px 0px",
-              height: "30px"
+              color: "#ffffff"
+              //margin: "0 auto"
             }}
           >
-            {/* <Typography className="heading" sx={{ p: 1, color: "#ffffff" }} >
-              AUDIT
-            </Typography> */}
-            <Typography
-              variant="subtitle1"
-              gutterBottom
+            <Box
               sx={{
-                fontFamily: "Roboto",
-                fontStyle: "normal",
-                textTransform: "uppercase",
-                fontSize: 16,
-                fontWeight: 700,
-                // lineHeight: 19,
-                // letterSpacing: 0,
+                width: 426,
+                // border: "1px solid yellow",
                 textAlign: "left",
-
-                // margin: 0,
-                // height: "",
-                paddingLeft: 1,
-                color: "#fff"
+                marginTop: 8
               }}
             >
-              AUDIT
-            </Typography>
-          </Box>
-          {value === true ? (
-            <>
-              <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                //minHeight="80vh"
-                sx={{
-                  color: "#ffffff"
-                  //margin: "0 auto"
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 426,
-                    border: "1px solid yellow",
-                    textAlign: "left",
-                    marginTop: 8
-                  }}
-                >
-                  <Stack spacing={2}>
-                    {/* <Typography className="subHeading" guterBottom>
+              <Stack spacing={2}>
+                {/* <Typography className="subHeading" guterBottom>
                       New audit query
                     </Typography>
                     <Typography className="title" gutterBottom>
                       Select a date range
                     </Typography> */}
-                    <Typography component="h5" variant="h5">
-                      New audit query
-                    </Typography>
-                    <Typography variant="subtitle2" gutterBottom>
-                      Select a date range
-                    </Typography>
-                    <Stack direction="row" spacing={1}>
-                      <Stack spacing={0}>
-                        {/* <Typography className="subTitle" gutterBottom>
+                <Typography component="h5" variant="h5">
+                  New audit query
+                </Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  Select a date range
+                </Typography>
+                <Stack direction="row" spacing={1}>
+                  <Stack spacing={0}>
+                    {/* <Typography className="subTitle" gutterBottom>
                           From
                         </Typography> */}
-                        <Typography variant="caption" gutterBottom>
-                          From
-                        </Typography>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DemoContainer
-                            sx={{ width: 209, fontSize: 8 }}
-                            components={["DateTimePicker", "DateTimePicker"]}
-                          >
-                            <DateTimePicker
-                              className={classes.root1}
-                              //  label="Controlled picker"
-                              value={fromDate}
-                              onChange={(newValue) => setFromDate(newValue)}
-                            />
-                          </DemoContainer>
-                        </LocalizationProvider>
-                      </Stack>
-                      <Stack spacing={0}>
-                        {/* <Typography className="subTitle" gutterBottom>
-                          To
-                        </Typography> */}
-                        <Typography variant="caption" gutterBottom>
-                          To
-                        </Typography>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                          <DemoContainer
-                            sx={{ width: 209, fontSize: 8 }}
-                            components={["DateTimePicker", "DateTimePicker"]}
-                          >
-                            <DateTimePicker
-                              className={classes.root1}
-                              //  label="Controlled picker"
-                              value={ToDate}
-                              onChange={(newValue) => setToDate(newValue)}
-                            />
-                          </DemoContainer>
-                        </LocalizationProvider>
-                      </Stack>
-                    </Stack>
-                    <FormControl sx={{ m: 1, width: 426 }}>
-                      {/* <Typography className="title" gutterBottom>
-                        Select type of event or activity
-                      </Typography> */}
-                      <Typography mb={1} variant="subtitle2" gutterBottom>
-                        Select type of event or activity
-                      </Typography>
-                      <Select
-                        labelId="demo-multiple-chip-label"
-                        id="demo-multiple-chip"
-                        multiple
-                        value={eventName}
-                        onChange={handleChangeEventName}
-                        input={<BootstrapInput />}
-                        // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                        renderValue={(selected) => (
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexWrap: "wrap",
-                              gap: 0.5
-                            }}
-                          >
-                            {selected.map((value) => (
-                              <Chip
-                                key={value}
-                                label={value}
-                                onClick={handleClick}
-                                onDelete={handleDelete}
-                                sx={{
-                                  backgroundColor: "#148291",
-                                  color: "#fff",
-                                  "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
-                                    fontSize: 15,
-                                    color: "#fff"
-                                  }
-                                }}
-                              />
-                            ))}
-                          </Box>
-                        )}
-                        MenuProps={MenuProps}
+                    <Typography variant="caption" gutterBottom>
+                      From
+                    </Typography>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer
+                        sx={{ width: 209, fontSize: 8 }}
+                        components={["DateTimePicker", "DateTimePicker"]}
                       >
-                        {eventnames.map((name) => (
-                          <MenuItem
-                            className={classes.root}
-                            key={name}
-                            value={name}
-                            style={getStyles(name, eventName, theme)}
-                          >
-                            {name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-
-                    <FormControl sx={{ m: 1, width: 426 }}>
-                      {/* <Typography className="title" gutterBottom>
-                        Select entity or asset
-                      </Typography> */}
-                      <Typography mb={1} variant="subtitle2" gutterBottom>
-                        Select entity or asset
-                      </Typography>
-                      <Select
-                        labelId="demo-multiple-chip-label"
-                        id="demo-multiple-chip"
-                        multiple
-                        value={entityName}
-                        onChange={handleChangeEntityName}
-                        input={<BootstrapInput />}
-                        // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                        renderValue={(selected) => (
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexWrap: "wrap",
-                              gap: 0.5
-                            }}
-                          >
-                            {selected.map((value) => (
-                              <Chip
-                                key={value}
-                                label={value}
-                                sx={{
-                                  backgroundColor: "#148291",
-                                  color: "#fff",
-                                  "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
-                                    fontSize: 15,
-                                    color: "#fff"
-                                  }
-                                }}
-                                onClick={handleClick}
-                                onDelete={handleDelete}
-                              />
-                            ))}
-                          </Box>
-                        )}
-                        MenuProps={MenuProps}
-                      >
-                        {entitynames.map((name) => (
-                          <MenuItem
-                            className={classes.root}
-                            key={name}
-                            value={name}
-                            style={getStyles(name, entityName, theme)}
-                          >
-                            {name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                    <FormControl sx={{ m: 1, width: 426 }}>
-                      {/* <Typography className="title" gutterBottom>
-                        Select users
-                      </Typography> */}
-                      <Typography mb={1} variant="subtitle2" gutterBottom>
-                        Select users
-                      </Typography>
-                      {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
-                      <Select
-                        labelId="demo-multiple-chip-label"
-                        id="demo-multiple-chip"
-                        multiple
-                        value={personName}
-                        input={<BootstrapInput />}
-                        onChange={handleChange}
-                        // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                        renderValue={(selected) => (
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexWrap: "wrap",
-                              gap: 0.5
-                            }}
-                          >
-                            {selected.map((value) => (
-                              <Chip
-                                key={value}
-                                label={value}
-                                sx={{
-                                  backgroundColor: "#148291",
-                                  color: "#fff",
-                                  "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
-                                    fontSize: 15,
-                                    color: "#fff"
-                                  }
-                                }}
-                                onClick={handleClick}
-                                onDelete={handleDelete}
-                              />
-                            ))}
-                          </Box>
-                        )}
-                        MenuProps={MenuProps}
-                      >
-                        {names.map((name) => (
-                          <MenuItem
-                            key={name}
-                            value={name}
-                            style={getStyles(name, personName, theme)}
-                            className={classes.root}
-                          >
-                            {name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                    <Box pt={2} display="flex" justifyContent="flex-end">
-                      <Button
-                        className="btn"
-                        type="submit"
-                        //fullWidth
-                        variant="contained"
-                        sx={{
-                          "&:hover": {
-                            backgroundColor: "none"
-                          }
-                        }}
-                        onClick={() => setValue(!value)}
-                      >
-                        START QUERY
-                      </Button>
-                    </Box>
+                        <DateTimePicker
+                          className={classes.root1}
+                          //  label="Controlled picker"
+                          value={fromDate}
+                          onChange={(newValue) => setFromDate(newValue)}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
                   </Stack>
+                  <Stack spacing={0}>
+                    {/* <Typography className="subTitle" gutterBottom>
+                          To
+                        </Typography> */}
+                    <Typography variant="caption" gutterBottom>
+                      To
+                    </Typography>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer
+                        sx={{ width: 209, fontSize: 8 }}
+                        components={["DateTimePicker", "DateTimePicker"]}
+                      >
+                        <DateTimePicker
+                          className={classes.root1}
+                          //  label="Controlled picker"
+                          value={ToDate}
+                          onChange={(newValue) => setToDate(newValue)}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Stack>
+                </Stack>
+                <FormControl sx={{ m: 1, width: 426 }}>
+                  {/* <Typography className="title" gutterBottom>
+                        Select type of event or activity
+                      </Typography> */}
+                  <Typography mb={1} variant="subtitle2" gutterBottom>
+                    Select type of event or activity
+                  </Typography>
+                  <Select
+                    labelId="demo-multiple-chip-label"
+                    id="demo-multiple-chip"
+                    multiple
+                    value={eventName}
+                    onChange={handleChangeEventName}
+                    input={<BootstrapInput />}
+                    // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 0.5
+                        }}
+                      >
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            onClick={handleClick}
+                            onDelete={handleDelete}
+                            sx={{
+                              backgroundColor: "#148291",
+                              color: "#fff",
+                              "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
+                                fontSize: 15,
+                                color: "#fff"
+                              }
+                            }}
+                          />
+                        ))}
+                      </Box>
+                    )}
+                    MenuProps={MenuProps}
+                  >
+                    {eventnames.map((name) => (
+                      <MenuItem
+                        className={classes.root}
+                        key={name}
+                        value={name}
+                        style={getStyles(name, eventName, theme)}
+                      >
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl sx={{ m: 1, width: 426 }}>
+                  {/* <Typography className="title" gutterBottom>
+                        Select entity or asset
+                      </Typography> */}
+                  <Typography mb={1} variant="subtitle2" gutterBottom>
+                    Select entity or asset
+                  </Typography>
+                  <Select
+                    labelId="demo-multiple-chip-label"
+                    id="demo-multiple-chip"
+                    multiple
+                    value={entityName}
+                    onChange={handleChangeEntityName}
+                    input={<BootstrapInput />}
+                    // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 0.5
+                        }}
+                      >
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            sx={{
+                              backgroundColor: "#148291",
+                              color: "#fff",
+                              "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
+                                fontSize: 15,
+                                color: "#fff"
+                              }
+                            }}
+                            onClick={handleClick}
+                            onDelete={handleDelete}
+                          />
+                        ))}
+                      </Box>
+                    )}
+                    MenuProps={MenuProps}
+                  >
+                    {entitynames.map((name) => (
+                      <MenuItem
+                        className={classes.root}
+                        key={name}
+                        value={name}
+                        style={getStyles(name, entityName, theme)}
+                      >
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <FormControl sx={{ m: 1, width: 426 }}>
+                  {/* <Typography className="title" gutterBottom>
+                        Select users
+                      </Typography> */}
+                  <Typography mb={1} variant="subtitle2" gutterBottom>
+                    Select users
+                  </Typography>
+                  {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
+                  <Select
+                    labelId="demo-multiple-chip-label"
+                    id="demo-multiple-chip"
+                    multiple
+                    value={personName}
+                    input={<BootstrapInput />}
+                    onChange={handleChange}
+                    // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: 0.5
+                        }}
+                      >
+                        {selected.map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            sx={{
+                              backgroundColor: "#148291",
+                              color: "#fff",
+                              "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
+                                fontSize: 15,
+                                color: "#fff"
+                              }
+                            }}
+                            onClick={handleClick}
+                            onDelete={handleDelete}
+                          />
+                        ))}
+                      </Box>
+                    )}
+                    MenuProps={MenuProps}
+                  >
+                    {names.map((name) => (
+                      <MenuItem
+                        key={name}
+                        value={name}
+                        style={getStyles(name, personName, theme)}
+                        className={classes.root}
+                      >
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <Box pt={2} display="flex" justifyContent="flex-end">
+                  <Button
+                    className="primarybtn"
+                    type="submit"
+                    //fullWidth
+                    variant="contained"
+                    sx={{
+                      "&:hover": {
+                        backgroundColor: "none"
+                      }
+                    }}
+                    onClick={() => setValue(!value)}
+                  >
+                    START QUERY
+                  </Button>
                 </Box>
-              </Box>
-            </>
-          ) : (
-            // <h1> detail screen</h1>
-            <DetailPage />
-          )}
-        </Box>
-      </div>
-      {/* </Container> */}
+              </Stack>
+            </Box>
+          </Box>
+        </>
+      ) : (
+        // <h1> detail screen</h1>
+        <DetailPage />
+      )}
     </React.Fragment>
   );
 }

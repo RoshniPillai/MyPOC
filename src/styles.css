@@ -37,7 +37,8 @@ body {
   letter-spacing: 0em;
   text-align: left;
 }
-.btn {
+.primarybtn,
+.primarybtn:hover {
   width: 135px;
   height: 43px;
   background: #148291;
