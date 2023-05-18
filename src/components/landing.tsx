@@ -338,15 +338,24 @@ export default function LandingPage() {
                   }}
                 >
                   <Stack spacing={2}>
-                    <Typography className="subHeading" gutterBottom>
+                    {/* <Typography className="subHeading" guterBottom>
                       New audit query
                     </Typography>
                     <Typography className="title" gutterBottom>
                       Select a date range
+                    </Typography> */}
+                    <Typography component="h5" variant="h5" gutterBottom>
+                      New audit query
+                    </Typography>
+                    <Typography variant="subtitle2" gutterBottom>
+                      Select a date range
                     </Typography>
                     <Stack direction="row" spacing={1}>
                       <Stack spacing={0}>
-                        <Typography className="subTitle" gutterBottom>
+                        {/* <Typography className="subTitle" gutterBottom>
+                          From
+                        </Typography> */}
+                        <Typography variant="caption" gutterBottom>
                           From
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -364,7 +373,10 @@ export default function LandingPage() {
                         </LocalizationProvider>
                       </Stack>
                       <Stack spacing={0}>
-                        <Typography className="subTitle" gutterBottom>
+                        {/* <Typography className="subTitle" gutterBottom>
+                          To
+                        </Typography> */}
+                        <Typography variant="caption" gutterBottom>
                           To
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -383,7 +395,10 @@ export default function LandingPage() {
                       </Stack>
                     </Stack>
                     <FormControl sx={{ m: 1, width: 426 }}>
-                      <Typography className="title" gutterBottom>
+                      {/* <Typography className="title" gutterBottom>
+                        Select type of event or activity
+                      </Typography> */}
+                      <Typography mb={1} variant="subtitle2" gutterBottom>
                         Select type of event or activity
                       </Typography>
                       <Select
@@ -436,7 +451,10 @@ export default function LandingPage() {
                     </FormControl>
 
                     <FormControl sx={{ m: 1, width: 426 }}>
-                      <Typography className="title" gutterBottom>
+                      {/* <Typography className="title" gutterBottom>
+                        Select entity or asset
+                      </Typography> */}
+                      <Typography mb={1} variant="subtitle2" gutterBottom>
                         Select entity or asset
                       </Typography>
                       <Select
@@ -488,7 +506,10 @@ export default function LandingPage() {
                       </Select>
                     </FormControl>
                     <FormControl sx={{ m: 1, width: 426 }}>
-                      <Typography className="title" gutterBottom>
+                      {/* <Typography className="title" gutterBottom>
+                        Select users
+                      </Typography> */}
+                      <Typography mb={1} variant="subtitle2" gutterBottom>
                         Select users
                       </Typography>
                       {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
@@ -534,28 +555,13 @@ export default function LandingPage() {
                             value={name}
                             style={getStyles(name, personName, theme)}
                             className={classes.root}
-                            // sx={{
-                            //   "&  ul.MuiList-root.MuiList-padding.MuiMenu-list": {
-                            //     backgroundColor: "blue"
-                            //     // font-family: 'Roboto';
-                            //     // font-size: 16px;
-                            //     // font-weight: 400;
-                            //     // line-height: 19px;
-                            //     // letter-spacing: 0em;
-                            //     // text-align: left;
-                            //   },
-
-                            //   "& li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters:hover": {
-                            //     backgroundColor: "yellow"
-                            //   }
-                            // }}
                           >
                             {name}
                           </MenuItem>
                         ))}
                       </Select>
                     </FormControl>
-                    <Box display="flex" justifyContent="flex-end">
+                    <Box pt={2} display="flex" justifyContent="flex-end">
                       <Button
                         className="btn"
                         type="submit"
