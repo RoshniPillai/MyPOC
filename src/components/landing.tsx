@@ -140,6 +140,12 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(3)
   },
+  "& .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon": {
+    color: "#fff"
+  },
+  "& .css-bpeome-MuiSvgIcon-root-MuiSelect-icon": {
+    color: "#fff"
+  },
   "& .MuiInputBase-input": {
     borderRadius: "20px",
     position: "relative",
@@ -159,9 +165,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     //   'sans-serif',
     // ].join(','),
     "&:focus": {
-      borderRadius: 4,
-      borderColor: "#80bdff",
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
+      borderRadius: 20
+      //  borderColor: "#80bdff",
+      //  boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
     },
     "&:after": {
       // color: 'red',
@@ -330,32 +336,26 @@ export default function LandingPage() {
                         </LocalizationProvider>
                       </Stack>
                     </Stack>
-                    <FormControl
-                      sx={{ m: 1, width: 426, height: 40, padding: 0 }}
-                    >
+                    <FormControl sx={{ m: 1, width: 426 }}>
                       <Typography className="title" gutterBottom>
                         Select type of event or activity
                       </Typography>
                       {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
                       <Select
-                        sx={{
-                          backgroundColor: alpha(
-                            theme.palette.common.white,
-                            0.15
-                          )
-                        }}
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
                         value={eventName}
                         onChange={handleChangeEventName}
+                        input={<BootstrapInput />}
                         // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                         renderValue={(selected) => (
                           <Box
                             sx={{
                               display: "flex",
                               flexWrap: "wrap",
-                              gap: 0.5
+                              gap: 0.5,
+                              ml: 1
                             }}
                           >
                             {selected.map((value) => (
@@ -366,7 +366,8 @@ export default function LandingPage() {
                                 onDelete={handleDelete}
                                 sx={{
                                   backgroundColor: "#148291",
-                                  color: "#fff"
+                                  color: "#fff",
+                                  fontSize: 18
                                 }}
                               />
                             ))}
@@ -386,22 +387,17 @@ export default function LandingPage() {
                       </Select>
                     </FormControl>
 
-                    <FormControl sx={{ m: 1, width: 300 }}>
+                    <FormControl sx={{ m: 1, width: 426 }}>
                       <Typography className="title" gutterBottom>
                         Select entity or asset
                       </Typography>
                       <Select
-                        sx={{
-                          backgroundColor: alpha(
-                            theme.palette.common.white,
-                            0.15
-                          )
-                        }}
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
                         value={entityName}
                         onChange={handleChangeEntityName}
+                        input={<BootstrapInput />}
                         // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                         renderValue={(selected) => (
                           <Box
@@ -417,7 +413,14 @@ export default function LandingPage() {
                                 label={value}
                                 sx={{
                                   backgroundColor: "#148291",
-                                  color: "#fff"
+                                  color: "#fff",
+                                  "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
+                                    color: "#fff"
+                                  },
+                                  "& .css-11hdbyq-MuiButtonBase-root-MuiChip-root .MuiChip-deleteIcon": {
+                                    fontSize: 10,
+                                    color: "#fff"
+                                  }
                                 }}
                                 onClick={handleClick}
                                 onDelete={handleDelete}
@@ -438,7 +441,7 @@ export default function LandingPage() {
                         ))}
                       </Select>
                     </FormControl>
-                    <FormControl sx={{ m: 1, width: 300 }}>
+                    <FormControl sx={{ m: 1, width: 426 }}>
                       <Typography className="title" gutterBottom>
                         Select users
                       </Typography>
@@ -456,27 +459,28 @@ export default function LandingPage() {
                         //   //   )
                         //   // }
                         // }}
-                        sx={{
-                          border: 0,
-                          //width: 300,
-                          // color: 'success.main',
-                          "& #demo-customized-select": {
-                            border: 0,
-                            borderRadius: 8
-                          },
-                          "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
-                            color: "#fff"
-                          },
-                          "& .MuiSelect-iconOpen": {
-                            display: "block",
-                            color: "#fff"
-                          }
-                        }}
+                        // sx={{
+                        //   border: 0,
+                        //   //width: 300,
+                        //   // color: 'success.main',
+                        //   "& #demo-customized-select": {
+                        //     border: 0,
+                        //     borderRadius: 8
+                        //   },
+                        //   "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
+                        //     color: "#fff"
+                        //   },
+
+                        //   "& .MuiSelect-iconOpen": {
+                        //     display: "block",
+                        //     color: "#fff"
+                        //   }
+                        // }}
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
                         value={personName}
-                        // input={<BootstrapInput />}
+                        input={<BootstrapInput />}
                         onChange={handleChange}
                         // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                         renderValue={(selected) => (
@@ -493,7 +497,12 @@ export default function LandingPage() {
                                 label={value}
                                 sx={{
                                   backgroundColor: "#148291",
-                                  color: "#fff"
+                                  color: "#fff",
+
+                                  "& .css-11hdbyq-MuiButtonBase-root-MuiChip-root .MuiChip-deleteIcon": {
+                                    fontSize: 30,
+                                    color: "red"
+                                  }
                                 }}
                                 onClick={handleClick}
                                 onDelete={handleDelete}
@@ -513,7 +522,10 @@ export default function LandingPage() {
                           </MenuItem>
                         ))}
                       </Select>
-                      <FormControl sx={{ m: 0, width: 426 }} variant="standard">
+                      <FormControl
+                        sx={{ mt: 2, width: 426 }}
+                        variant="standard"
+                      >
                         <Select
                           sx={{
                             border: 0,
