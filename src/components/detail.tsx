@@ -27,6 +27,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { useTheme } from "@mui/material/styles";
 import Table from "@mui/material/Table";
+import Pagination from "@mui/material/Pagination";
 import { rows } from "./data";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
