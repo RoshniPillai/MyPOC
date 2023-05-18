@@ -165,10 +165,10 @@ function Item1(props: BoxProps) {
     />
   );
 }
-const StackItem = styled(Paper)(({ theme }) => ({
+const StackItem = styled("div")(({ theme }) => ({
   // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   // ...theme.typography.body2,
-  background: "#28292B",
+  background: "transparent",
   padding: theme.spacing(1),
   textAlign: "left",
   fontSize: 12,
@@ -176,14 +176,16 @@ const StackItem = styled(Paper)(({ theme }) => ({
 }));
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  // borderRadius: theme.shape.borderRadius,
+  //backgroundColor: alpha(theme.palette.common.white, 0.15),
+  background: "#28292B",
+  borderRadius: "6px",
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25)
+    // backgroundColor: alpha(theme.palette.common.white, 0.25)
   },
   marginLeft: 0,
   width: "100%",
-  height: 30,
+  height: 35,
   [theme.breakpoints.up("sm")]: {
     //   marginLeft: theme.spacing(1),
     width: "auto"
@@ -222,9 +224,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     color: "#fff"
   },
   "& .MuiInputBase-input": {
-    borderRadius: "20px",
+    borderRadius: "6px",
     position: "relative",
-    backgroundColor: "#3D4044",
+    backgroundColor: "#28292B",
     fontFamily: "Roboto",
     fontSize: "18px",
     fontWeight: 400,
@@ -232,7 +234,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     letterSpacing: "0em",
     color: "#fff",
     "&:focus": {
-      borderRadius: 20
+      borderRadius: "6px"
     }
   }
 }));
@@ -254,6 +256,14 @@ export default function DetailPage() {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
+  };
+  /*for chip */
+  const handleClick = () => {
+    console.info("You clicked the Chip.");
+  };
+
+  const handleDelete = () => {
+    console.info("You clicked the delete icon.");
   };
   const classes = useStyles();
   return (
@@ -403,7 +413,7 @@ export default function DetailPage() {
                         </Box>
                         <Box
                           sx={{
-                            background: "#232425",
+                            background: "#3D4044",
                             //height: 100,
                             minHeight: 100
                           }}
@@ -415,7 +425,7 @@ export default function DetailPage() {
                               md: "row",
                               lg: "row"
                             }}
-                            spacing={{ xs: 1, sm: 2, md: 4 }}
+                            spacing={{ xs: 1, sm: 2, md: 4, lg: 2 }}
                           >
                             <StackItem>
                               <Stack>
@@ -426,7 +436,16 @@ export default function DetailPage() {
                                     fontSize="small"
                                   />
                                 </Typography>
-                                DateTime
+                                <Box
+                                  sx={{
+                                    bgcolor: "#28292B",
+                                    p: 1,
+                                    borderRadius: "6px",
+                                    fontSize: 12
+                                  }}
+                                >
+                                  Placeholder
+                                </Box>
                               </Stack>
                             </StackItem>
                             <StackItem>
@@ -470,15 +489,18 @@ export default function DetailPage() {
                                               key={value}
                                               label={value}
                                               sx={{
-                                                backgroundColor: "#148291",
+                                                background: "#00A3BF",
+                                                // backgroundColor: "#148291",
                                                 color: "#fff",
+                                                borderRadius: "4px",
+                                                fontSize: 12,
                                                 "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
-                                                  fontSize: 15,
+                                                  fontSize: 12,
                                                   color: "#fff"
                                                 }
                                               }}
-                                              // onClick={handleClick}
-                                              // onDelete={handleDelete}
+                                              onClick={handleClick}
+                                              onDelete={handleDelete}
                                             />
                                           ))}
                                         </Box>
@@ -500,56 +522,6 @@ export default function DetailPage() {
                                         </MenuItem>
                                       ))}
                                     </Select>
-                                    {/* <Select
-                                     
-                                      labelId="demo-multiple-chip-label"
-                                      id="demo-multiple-chip"
-                                      multiple
-                                      value={personName}
-                                      onChange={handleChange}
-                                      input={
-                                        <OutlinedInput
-                                          id="select-multiple-chip"
-                                          label="Chip"
-                                        />
-                                      }
-                                      renderValue={(selected) => (
-                                        <Box
-                                          sx={{
-                                            //backgroundColor: alpha(theme.palette.common.white, 0.15),
-                                            display: "flex",
-                                            flexWrap: "wrap",
-                                            gap: 0.5
-                                          }}
-                                        >
-                                          {selected.map((value) => (
-                                            <Chip
-                                              key={value}
-                                              label={value}
-                                              sx={{
-                                                backgroundColor: "#148291",
-                                                color: "#fff"
-                                              }}
-                                            />
-                                          ))}
-                                        </Box>
-                                      )}
-                                      MenuProps={MenuProps}
-                                    >
-                                      {names.map((name) => (
-                                        <MenuItem
-                                          key={name}
-                                          value={name}
-                                          style={getStyles(
-                                            name,
-                                            personName,
-                                            theme
-                                          )}
-                                        >
-                                          {name}
-                                        </MenuItem>
-                                      ))}
-                                    </Select> */}
                                   </FormControl>
                                 </div>
                               </Typography>{" "}
