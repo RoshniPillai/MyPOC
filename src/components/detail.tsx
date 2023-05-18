@@ -342,8 +342,8 @@ export default function DetailPage() {
                       // flexDirection: "row",
                       // justifyContent: "space-between",
                       maxHeight: 939,
-                      height: "100%",
-                      border: "1px solid red"
+                      height: "100%"
+                      // border: "1px solid red"
                     }}
                   >
                     <Box
@@ -438,7 +438,7 @@ export default function DetailPage() {
                             <Box
                               sx={{
                                 bgcolor: "#28292B",
-                                p: 1,
+                                p: 0.7,
                                 borderRadius: "6px",
                                 fontSize: 12
                               }}
