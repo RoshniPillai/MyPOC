@@ -232,7 +232,7 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginLeft: 0,
   width: "100%",
-  height: 35,
+  height: 30,
   [theme.breakpoints.up("sm")]: {
     //   marginLeft: theme.spacing(1),
     width: "auto"
@@ -366,15 +366,15 @@ export default function DetailPage() {
                       </Item>
                       <Item>
                         <div>
-                          <Button
+                          {/* <Button
                             sx={{ p: 0 }}
                             //onClick={handleClick}
-                          >
-                            <AutorenewIcon
-                              sx={{ color: "#fff" }}
-                              fontSize="small"
-                            />
-                          </Button>
+                          > */}
+                          <AutorenewIcon
+                            sx={{ color: "#fff" }}
+                            fontSize="small"
+                          />
+                          {/* </Button> */}
                           {/* <Snackbar
                               open={open}
                               autoHideDuration={6000}
@@ -384,6 +384,12 @@ export default function DetailPage() {
                             /> */}
                         </div>
                       </Item>
+                      <Item></Item>
+                      <Item></Item>
+                      <Item></Item>
+                      <Item></Item>
+                      <Item></Item>
+                      <Item></Item>
                       <Item>
                         <Button
                           type="submit"
