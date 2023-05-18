@@ -11,8 +11,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { Theme, useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -20,13 +18,12 @@ import Chip from "@mui/material/Chip";
 import { styled } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 
 import DetailPage from "./detail";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
+// const ITEM_HEIGHT = 48;
+// const ITEM_PADDING_TOP = 8;
 const theme = createTheme();
 const useStyles = makeStyles({
   select: {
@@ -46,6 +43,7 @@ const useStyles = makeStyles({
     borderRadius: 20,
     color: "#fff !important",
     backgroundColor: "#3D4044 !important",
+    fontSize: "12px !important",
     "& ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list": {},
     "& .css-6hp17o-MuiList-root-MuiMenu-list": {},
     "&:hover": {
@@ -211,18 +209,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     "&:after": {
       // color: 'red',
     }
-  },
-  "&  ul.MuiList-root.MuiList-padding.MuiMenu-list": {
-    backgroundColor: "blue"
-    // font-family: 'Roboto';
-    // font-size: 16px;
-    // font-weight: 400;
-    // line-height: 19px;
-    // letter-spacing: 0em;
-    // text-align: left;
-  },
-  "& li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters:hover": {
-    backgroundColor: "yellow"
   }
 }));
 export default function LandingPage() {
@@ -302,7 +288,7 @@ export default function LandingPage() {
         <Box
           sx={{
             bgcolor: "#232425",
-            // width: "80%",
+            width: "80%",
             minHeight: "100vh",
             maxHeight: "100vh"
           }}
@@ -310,11 +296,32 @@ export default function LandingPage() {
           <Box
             sx={{
               background: "#148291",
-              // borderRadius: "4px 4px 0px 0px",
-              height: 30
+              borderRadius: "4px 4px 0px 0px",
+              height: "30px"
             }}
           >
-            <Typography className="heading" sx={{ pl: 1, color: "#ffffff" }}>
+            {/* <Typography className="heading" sx={{ p: 1, color: "#ffffff" }} >
+              AUDIT
+            </Typography> */}
+            <Typography
+              variant="subtitle1"
+              gutterBottom
+              sx={{
+                fontFamily: "Roboto",
+                fontStyle: "normal",
+                textTransform: "uppercase",
+                fontSize: 16,
+                fontWeight: 700,
+                // lineHeight: 19,
+                // letterSpacing: 0,
+                textAlign: "left",
+
+                // margin: 0,
+                // height: "",
+                paddingLeft: 1,
+                color: "#fff"
+              }}
+            >
               AUDIT
             </Typography>
           </Box>
@@ -324,7 +331,7 @@ export default function LandingPage() {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                minHeight="80vh"
+                //minHeight="80vh"
                 sx={{
                   color: "#ffffff"
                   //margin: "0 auto"
@@ -334,7 +341,8 @@ export default function LandingPage() {
                   sx={{
                     width: 426,
                     border: "1px solid yellow",
-                    textAlign: "left"
+                    textAlign: "left",
+                    marginTop: 8
                   }}
                 >
                   <Stack spacing={2}>
@@ -344,7 +352,7 @@ export default function LandingPage() {
                     <Typography className="title" gutterBottom>
                       Select a date range
                     </Typography> */}
-                    <Typography component="h5" variant="h5" gutterBottom>
+                    <Typography component="h5" variant="h5">
                       New audit query
                     </Typography>
                     <Typography variant="subtitle2" gutterBottom>
