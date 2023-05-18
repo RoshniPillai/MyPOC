@@ -39,7 +39,7 @@ const Item = styled("div")(({ theme }) => ({
   borderRadius: "4px",
   textAlign: "left",
   fontFamily: "Roboto",
-  fontSize: 14,
+  fontSize: 12,
   fontWeight: 500,
   lineHeight: "21px",
   letterSpacing: 0
@@ -169,6 +169,15 @@ export default function DetailsTab() {
                 </Typography>
               </AccordionDetails>
             </Accordion>
+            {/* <Accordion disabled>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3a-content"
+          id="panel3a-header"
+        >
+          <Typography>Disabled Accordion</Typography>
+        </AccordionSummary>
+      </Accordion> */}
           </div>
         </Grid>
       </Grid>

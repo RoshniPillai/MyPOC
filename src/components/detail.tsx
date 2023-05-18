@@ -108,8 +108,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 12,
-    paddingTop: 0,
-    paddingBottom: 0,
+    padding: 8,
+    // paddingTop: 0,
+    // paddingBottom: 0,
     border: 0,
     color: theme.palette.common.white
   }
@@ -405,9 +406,9 @@ export default function DetailPage() {
                     </Box>
                     <Box
                       sx={{
-                        background: "#3D4044",
+                        background: "#3D4044"
                         //height: 100,
-                        minHeight: 100
+                        // minHeight:90
                       }}
                     >
                       <Stack
@@ -560,7 +561,7 @@ export default function DetailPage() {
                           overflow: "hidden",
                           borderRadius: 0,
                           backgroundColor: "#52575D",
-                          minHeight: 400
+                          minHeight: 450
                         }}
                       >
                         <TableContainer
@@ -636,12 +637,12 @@ export default function DetailPage() {
                                   <StyledTableCell align="right">
                                     {row.user}
                                   </StyledTableCell>
-                                  <StyledTableCell align="right">
+                                  {/* <StyledTableCell align="right">
                                     <MoreVertIcon
-                                      sx={{ p: 1 }}
+                                      sx={{ }}
                                       fontSize="small"
                                     />
-                                  </StyledTableCell>
+                                  </StyledTableCell> */}
                                 </StyledTableRow>
                               ))}
                             </TableBody>
