@@ -37,7 +37,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import DownloadIcon from "@mui/icons-material/Download";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import AuditLogTable from "./auditTable";
+import DetailPanelView from "./detailPanel";
 const useStyles = makeStyles({
   root: {
     height: 30,
@@ -91,6 +91,8 @@ const useStyles = makeStyles({
     }
   },
   tableCell: {
+    border: 0,
+    borderBottom: "none",
     "$selected &": {
       color: "white"
     }
@@ -104,9 +106,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 12,
     paddingTop: 0,
     paddingBottom: 0,
+    border: 0,
     color: theme.palette.common.white
   }
 }));
@@ -114,10 +117,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     //  backgroundColor: theme.palette.action.hover,
-    backgroundColor: "#000"
+    backgroundColor: "#121212"
   },
   "&:nth-of-type(even)": {
-    backgroundColor: "#3d444e"
+    backgroundColor: "#232425"
   },
   // hide last border
   "&:last-child td, &:last-child th": {
@@ -391,6 +394,7 @@ export default function DetailPage() {
                           // flexDirection: "row",
                           // justifyContent: "space-between",
                           maxHeight: 939,
+                          height: "100%",
                           border: "1px solid red"
                         }}
                       >
@@ -468,7 +472,7 @@ export default function DetailPage() {
                               md: "row",
                               lg: "row"
                             }}
-                            spacing={{ xs: 1, sm: 2, md: 4, lg: 2 }}
+                            spacing={{ xs: 1, sm: 2, md: 3, lg: 2 }}
                           >
                             <StackItem>
                               <Stack>
@@ -614,7 +618,8 @@ export default function DetailPage() {
                               width: "100%",
                               overflow: "hidden",
                               borderRadius: 0,
-                              backgroundColor: "#000"
+                              backgroundColor: "#000",
+                              minHeight: 400
                             }}
                           >
                             <TableContainer
@@ -622,10 +627,10 @@ export default function DetailPage() {
                               //sx={{ maxHeight: 340 }}
                             >
                               <Table
-                                sx={{ minWidth: 700 }}
+                                sx={{ minWidth: 700, minHeight: 0 }}
                                 aria-label="customized table"
                               >
-                                <TableHead>
+                                {/* <TableHead>
                                   <TableRow>
                                     <StyledTableCell>Date</StyledTableCell>
                                     <StyledTableCell align="right">
@@ -645,7 +650,7 @@ export default function DetailPage() {
                                     </StyledTableCell>
                                     <StyledTableCell align="right"></StyledTableCell>
                                   </TableRow>
-                                </TableHead>
+                                </TableHead> */}
                                 <TableBody sx={{ maxHeight: 120 }}>
                                   {rows.map((row) => (
                                     <StyledTableRow
@@ -734,29 +739,29 @@ export default function DetailPage() {
                         </TableFooter> */}
                               </Table>
                             </TableContainer>
-                            <Box
-                              sx={{
-                                backgroundColor: "#fff",
-                                "&  .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
-                                  color: "#ffffff",
-                                  backgroundColor: "#148291",
-                                  borderRadius: 1
-                                }
-                              }}
-                              //m={1}
-                              p={1}
-                              display="flex"
-                              justifyContent="center"
-                              alignItems="center"
-                            >
-                              <Pagination
-                                sx={{ textAlign: "center" }}
-                                count={3}
-                                showFirstButton
-                                showLastButton
-                              />
-                            </Box>
                           </Paper>
+                          <Box
+                            sx={{
+                              backgroundColor: "#52575D",
+                              "&  .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
+                                color: "#ffffff",
+                                backgroundColor: "#148291",
+                                borderRadius: 1
+                              }
+                            }}
+                            //m={1}
+                            p={1}
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <Pagination
+                              sx={{ textAlign: "center" }}
+                              count={1}
+                              showFirstButton
+                              showLastButton
+                            />
+                          </Box>
                           {/* <TableSearch /> */}
                         </Box>
                       </Box>
@@ -814,10 +819,9 @@ export default function DetailPage() {
                               display="block"
                               // sx={{ color: "#148291" }}
                             >
-                              table row with ID {selectedID} is selected
+                              Record with ID {selectedID} is selected
                             </Typography>
-
-                            {/* <DetailsTab /> */}
+                            <DetailPanelView />
                           </>
                         )}
                       </Paper>
