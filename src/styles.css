@@ -9,7 +9,7 @@
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
-  color: '#ffffff';
+  color: "#ffffff";
 }
 .subHeading {
   font-family: "Roboto";
@@ -32,4 +32,19 @@
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 6px;
+  position: absolute;
+  width: 135px;
+  height: 43px;
+  left: 844px;
+  top: 820px;
+  background: #148291;
+  border-radius: 3px;
 }

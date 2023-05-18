@@ -598,6 +598,7 @@ export default function LandingPage() {
                       </FormControl>
                     </FormControl>
                     <Button
+                      className="btn"
                       type="submit"
                       //fullWidth
                       variant="contained"
