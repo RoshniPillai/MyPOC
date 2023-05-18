@@ -272,7 +272,7 @@ export default function LandingPage() {
     console.info("You clicked the delete icon.");
   };
   /* start query button */
-  const [value, setValue] = React.useState(true);
+  const [value, setValue] = React.useState(false);
   return (
     <React.Fragment>
       <CssBaseline />
