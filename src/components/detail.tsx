@@ -13,7 +13,21 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
-
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableFooter from "@mui/material/TableFooter";
+import TablePagination from "@mui/material/TablePagination";
+import IconButton from "@mui/material/IconButton";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
+import { useTheme } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import { rows } from "./data";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
@@ -83,6 +97,33 @@ const useStyles = makeStyles({
   hover: {},
   selected: {}
 });
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+    paddingTop: 0,
+    paddingBottom: 0,
+    color: theme.palette.common.white
+  }
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    //  backgroundColor: theme.palette.action.hover,
+    backgroundColor: "#000"
+  },
+  "&:nth-of-type(even)": {
+    backgroundColor: "#3d444e"
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0
+  }
+}));
+
 const MenuProps = {
   PaperProps: {
     sx: {
@@ -238,6 +279,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     }
   }
 }));
+
 const theme = createTheme();
 
 export default function DetailPage() {
@@ -563,6 +605,158 @@ export default function DetailPage() {
                               </Search>
                             </StackItem>
                           </Stack>
+                        </Box>
+                        <Box>
+                          <Paper
+                            square
+                            sx={{
+                              width: "100%",
+                              overflow: "hidden",
+                              borderRadius: 0,
+                              backgroundColor: "#000"
+                            }}
+                          >
+                            <TableContainer
+                              component={Paper}
+                              //sx={{ maxHeight: 340 }}
+                            >
+                              <Table
+                                sx={{ minWidth: 700 }}
+                                aria-label="customized table"
+                              >
+                                <TableHead>
+                                  <TableRow>
+                                    <StyledTableCell>Date</StyledTableCell>
+                                    <StyledTableCell align="right">
+                                      ID
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">
+                                      Entity Type
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">
+                                      Entity
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">
+                                      Action
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">
+                                      User
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right"></StyledTableCell>
+                                  </TableRow>
+                                </TableHead>
+                                <TableBody sx={{ maxHeight: 120 }}>
+                                  {rows.map((row) => (
+                                    <StyledTableRow
+                                      //key={row.date}
+                                      // onClick={() => setSelectedRow(!selectedRow)}
+                                      key={row.id}
+                                      onClick={() => {
+                                        setSelectedID(row.id);
+                                        console.log(
+                                          "selected row is",
+                                          selectedID
+                                        );
+                                      }}
+                                      selected={selectedID === row.id}
+                                      classes={{
+                                        hover: classes.hover,
+                                        selected: classes.selected
+                                      }}
+                                      className={classes.tableRow}
+                                      // classes={{
+                                      //   root: classes.tableRowRoot,
+                                      //   selected: classes.tableRowSelected
+                                      // }}
+                                      sx={{
+                                        "&:last-child td, &:last-child th": {
+                                          border: 0
+                                        }
+                                      }}
+                                    >
+                                      <StyledTableCell
+                                        component="th"
+                                        scope="row"
+                                      >
+                                        {row.date}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.id}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.entityType}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.entity}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.action}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.user}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        <MoreVertIcon
+                                          sx={{ p: 1 }}
+                                          fontSize="small"
+                                        />
+                                      </StyledTableCell>
+                                    </StyledTableRow>
+                                  ))}
+                                </TableBody>
+                                {/* <TableFooter>
+                          <TableRow>
+                            <TablePagination
+                              rowsPerPageOptions={
+                                [
+                                  // 5,
+                                  // 10,
+                                  // 25,
+                                  // { label: "All", value: -1 }
+                                ]
+                              }
+                              colSpan={8}
+                              count={rows.length}
+                              rowsPerPage={rowsPerPage}
+                              page={page}
+                              SelectProps={{
+                                inputProps: {
+                                  "aria-label": "rows per page"
+                                },
+                                native: true
+                              }}
+                              onPageChange={handleChangePage}
+                              onRowsPerPageChange={handleChangeRowsPerPage}
+                              ActionsComponent={TablePaginationActions}
+                            />
+                          </TableRow>
+                        </TableFooter> */}
+                              </Table>
+                            </TableContainer>
+                            <Box
+                              sx={{
+                                backgroundColor: "#fff",
+                                "&  .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
+                                  color: "#ffffff",
+                                  backgroundColor: "#148291",
+                                  borderRadius: 1
+                                }
+                              }}
+                              //m={1}
+                              p={1}
+                              display="flex"
+                              justifyContent="center"
+                              alignItems="center"
+                            >
+                              <Pagination
+                                sx={{ textAlign: "center" }}
+                                count={3}
+                                showFirstButton
+                                showLastButton
+                              />
+                            </Box>
+                          </Paper>
+                          {/* <TableSearch /> */}
                         </Box>
                       </Box>
                     </Item1>
