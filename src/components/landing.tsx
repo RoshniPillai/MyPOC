@@ -21,6 +21,7 @@ import { styled } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
 
 import DetailPage from "./detail";
 
@@ -135,6 +136,38 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
         : theme.typography.fontWeightMedium
   };
 }
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(3)
+  },
+  "& .MuiInputBase-input": {
+    borderRadius: "20px",
+    position: "relative",
+    backgroundColor: "#3D4044",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    fontWeight: 400,
+    lineHeight: "21px",
+    letterSpacing: "0em",
+    color: "#fff",
+    //padding: "10px 26px 10px 12px",
+    // transition: theme.transitions.create(["border-color", "box-shadow"]),
+    // fontFamily: [
+    //   'Roboto',
+    //   '"Helvetica Neue"',
+    //   'Arial',
+    //   'sans-serif',
+    // ].join(','),
+    "&:focus": {
+      borderRadius: 4,
+      borderColor: "#80bdff",
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
+    },
+    "&:after": {
+      // color: 'red',
+    }
+  }
+}));
 export default function LandingPage() {
   const theme = useTheme();
   const classes = useStyles();
@@ -196,7 +229,7 @@ export default function LandingPage() {
     console.info("You clicked the delete icon.");
   };
   /* start query button */
-  const [value, setValue] = React.useState(false);
+  const [value, setValue] = React.useState(true);
   return (
     <React.Fragment>
       <CssBaseline />
@@ -251,7 +284,10 @@ export default function LandingPage() {
                           >
                             <DateTimePicker
                               sx={{
-                                width: 300,
+                                background: "#3D4044",
+                                borderRadius: "20px",
+                                height: "40px",
+                                width: "426px",
                                 color: "success.main",
                                 "& .MuiSvgIcon-root": { color: "#ffffff" }
                               }}
@@ -294,7 +330,9 @@ export default function LandingPage() {
                         </LocalizationProvider>
                       </Stack>
                     </Stack>
-                    <FormControl sx={{ m: 1, width: 300 }}>
+                    <FormControl
+                      sx={{ m: 1, width: 426, height: 40, padding: 0 }}
+                    >
                       <Typography className="title" gutterBottom>
                         Select type of event or activity
                       </Typography>
@@ -406,22 +444,39 @@ export default function LandingPage() {
                       </Typography>
                       {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
                       <Select
+                        // sx={{
+                        //   backgroundColor: alpha(
+                        //     theme.palette.common.white,
+                        //     0.15
+                        //   )
+                        //   // "&:hover": {
+                        //   //   backgroundColor: alpha(
+                        //   //     theme.palette.common.white,
+                        //   //     0.25
+                        //   //   )
+                        //   // }
+                        // }}
                         sx={{
-                          backgroundColor: alpha(
-                            theme.palette.common.white,
-                            0.15
-                          )
-                          // "&:hover": {
-                          //   backgroundColor: alpha(
-                          //     theme.palette.common.white,
-                          //     0.25
-                          //   )
-                          // }
+                          border: 0,
+                          //width: 300,
+                          // color: 'success.main',
+                          "& #demo-customized-select": {
+                            border: 0,
+                            borderRadius: 8
+                          },
+                          "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
+                            color: "#fff"
+                          },
+                          "& .MuiSelect-iconOpen": {
+                            display: "block",
+                            color: "#fff"
+                          }
                         }}
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
                         value={personName}
+                        // input={<BootstrapInput />}
                         onChange={handleChange}
                         // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                         renderValue={(selected) => (
@@ -458,6 +513,77 @@ export default function LandingPage() {
                           </MenuItem>
                         ))}
                       </Select>
+                      <FormControl sx={{ m: 0, width: 426 }} variant="standard">
+                        <Select
+                          sx={{
+                            border: 0,
+                            //width: 300,
+                            // color: 'success.main',
+                            "& #demo-customized-select": {
+                              border: 0,
+                              borderRadius: 8
+                            },
+                            "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
+                              color: "#fff"
+                            },
+                            "& .MuiSelect-iconOpen": {
+                              display: "block",
+                              color: "#fff"
+                            }
+                          }}
+                          className={classes.root}
+                          labelId="demo-customized-select-label"
+                          id="demo-customized-select"
+                          // value={age}
+                          onChange={handleChange}
+                          input={<BootstrapInput />}
+                          MenuProps={{
+                            PaperProps: {
+                              sx: {
+                                // bgcolor: "pink",
+                                "& .css-6hp17o-MuiList-root-MuiMenu-list": {
+                                  padding: 0,
+                                  borderRadius: 10
+                                }
+                                // "& .MuiMenuItem-root": {
+                                //   padding: 2
+                                // }
+                              }
+                            }
+                          }}
+                        >
+                          <MenuItem
+                            // sx={{
+                            //   "& .css-6hp17o-MuiList-root-MuiMenu-list": {
+                            //     backgroundColor: "red",
+                            //     padding: 0
+                            //   },
+                            //   "& ul.MuiList-root": {
+                            //     backgroundColor: "red",
+                            //     padding: 0
+                            //   },
+                            //   "& .MuiList-padding": {
+                            //     backgroundColor: "red",
+                            //     padding: 0
+                            //   },
+                            //   "& .MuiMenu-list": {
+                            //     backgroundColor: "red",
+                            //     padding: 0
+                            //   }
+                            // }}
+                            className={classes.root}
+                            value="{1}"
+                          >
+                            User 1
+                          </MenuItem>
+                          <MenuItem className={classes.root} value={2}>
+                            User 2
+                          </MenuItem>
+                          <MenuItem className={classes.root} value={3}>
+                            User 3
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
                     </FormControl>
                     <Button
                       type="submit"
