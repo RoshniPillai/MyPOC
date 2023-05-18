@@ -45,15 +45,9 @@ const useStyles = makeStyles({
     margin: 0,
     borderRadius: 20,
     color: "#fff !important",
-    //padding: '10px',
-    //paddingLeft: 20,
-    backgroundColor: "#616161 !important",
-    "& ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list": {
-      // paddingTop: "0 !important"
-    },
-    "& .css-6hp17o-MuiList-root-MuiMenu-list": {
-      //paddingTop: "100 !important"
-    },
+    backgroundColor: "#3D4044 !important",
+    "& ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list": {},
+    "& .css-6hp17o-MuiList-root-MuiMenu-list": {},
     "&:hover": {
       color: "#fff",
       backgroundColor: "#148291 !important"
@@ -62,18 +56,37 @@ const useStyles = makeStyles({
       color: "#fff"
       // backgroundColor: "red"
     },
-    "& .css-w6qulv-MuiInputBase-root .MuiInputBase-input:focus": {
-      //  boxShadow: 0
-    }
+    "& .css-w6qulv-MuiInputBase-root .MuiInputBase-input:focus": {}
   },
   root1: {
-    backgroundColor: "#616161",
+    backgroundColor: "#3D4044",
+    background: "#3D4044",
+    borderRadius: "20px",
+    //height: "40px",
+    width: "209px",
+    minWidth: "209px !important",
+    paddingLeft: 8,
+    fontSize: 8,
+    "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd.MuiInputAdornment-outlined.MuiInputAdornment-sizeMedium ": {
+      position: "absolute",
+      left: 0
+    },
+    // color: "success.main",
+    "& .MuiSvgIcon-root": { color: "#ffffff", width: 15 },
     "&:hover": {
       // color: "red",
       // backgroundColor: "blue"
     },
     "& .MuiOutlinedInput-input": {
-      color: "#ffffff"
+      color: "#ffffff",
+      fontFamily: "Roboto",
+      fontSize: 14,
+      fontWeight: 400,
+      lineHeight: 19,
+      letterSpacing: 0,
+      textAlign: "left",
+      // paddingLeft: 40,
+      padding: "10px 20px 10px 40px"
     },
     "&.MuiInputAdornment-positionEnd": {
       color: "#ffffff"
@@ -85,6 +98,20 @@ const useStyles = makeStyles({
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
       //  borderColor: "green"
     }
+    // " & .MuiFormControl-root.MuiTextField-root.makeStyles-root1-63.css-1u3bzj6-MuiFormControl-root-MuiTextField-root": {
+    //   width: 209,
+    //   maxWidth: 209,
+    //   overflowX: "hidden",
+    //   overflowY: "hidden",
+    //   minWidth: 209
+    // },
+    // "&  .MuiStack-root.css-nen11g-MuiStack-root .MuiStack-root .MuiFormControl-root.MuiTextField-root.makeStyles-root1-123": {
+    //   background: "pink"
+    //   //  min-width: 209px;
+    //   // max-width: 209px;
+    //   // overflow-x: hidden;
+    //   // overflow-y: hidden;
+    // }
   },
   margin: {
     margin: theme.spacing(1)
@@ -98,10 +125,22 @@ const useStyles = makeStyles({
 });
 const MenuProps = {
   PaperProps: {
-    style: {
-      //color: "red",
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
+    sx: {
+      // bgcolor: "pink",
+      "& .css-6hp17o-MuiList-root-MuiMenu-list": {
+        padding: 0,
+        borderRadius: 10,
+        backgroundColor: "#3D4044"
+      },
+      "& .MuiList-root.MuiList-padding.MuiMenu-list": {
+        padding: 0,
+        width: "426px",
+        /* height: 105px; */
+        /* left: 553px; */
+        background: "#3D4044",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        borderRadius: 8
+      }
     }
   }
 };
@@ -110,13 +149,13 @@ const names = [
   "Oliver ",
   "Wilson",
   "April",
-  "Ralph ",
-  "Omar",
-  "Carlos Abbott",
-  "Miriam ",
-  "Bradley",
-  "Virginia ",
-  "Kelly"
+  "Ralph "
+  // "Omar",
+  // "Carlos Abbott",
+  // "Miriam ",
+  // "Bradley",
+  // "Virginia ",
+  // "Kelly"
 ];
 const eventnames = [
   "Assignments & Circuits ",
@@ -172,6 +211,18 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     "&:after": {
       // color: 'red',
     }
+  },
+  "&  ul.MuiList-root.MuiList-padding.MuiMenu-list": {
+    backgroundColor: "blue"
+    // font-family: 'Roboto';
+    // font-size: 16px;
+    // font-weight: 400;
+    // line-height: 19px;
+    // letter-spacing: 0em;
+    // text-align: left;
+  },
+  "& li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters:hover": {
+    backgroundColor: "yellow"
   }
 }));
 export default function LandingPage() {
@@ -239,13 +290,28 @@ export default function LandingPage() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg">
-        <Box sx={{ bgcolor: "#232425", height: "100vh" }}>
+      {/* <Container maxWidth="lg" sx={{ bgcolor: "pink" }}> */}
+
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          backgroundColor: "#000"
+        }}
+      >
+        <Box
+          sx={{
+            bgcolor: "#232425",
+            // width: "80%",
+            minHeight: "100vh",
+            maxHeight: "100vh"
+          }}
+        >
           <Box
             sx={{
               background: "#148291",
               // borderRadius: "4px 4px 0px 0px",
-              height: "30px"
+              height: 30
             }}
           >
             <Typography className="heading" sx={{ pl: 1, color: "#ffffff" }}>
@@ -258,16 +324,20 @@ export default function LandingPage() {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                minHeight="100vh"
-                sx={{ color: "#ffffff" }}
+                minHeight="80vh"
+                sx={{
+                  color: "#ffffff"
+                  //margin: "0 auto"
+                }}
               >
                 <Box
-                // sx={{ width: "100%" }}
+                  sx={{
+                    width: 426,
+                    border: "1px solid yellow",
+                    textAlign: "left"
+                  }}
                 >
-                  <Stack
-                    spacing={2}
-                    sx={{ border: "1px solid red", textAlign: "left" }}
-                  >
+                  <Stack spacing={2}>
                     <Typography className="subHeading" gutterBottom>
                       New audit query
                     </Typography>
@@ -281,22 +351,10 @@ export default function LandingPage() {
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <DemoContainer
-                            sx={{
-                              color: "#fff",
-                              borderRadius: 8,
-                              padding: 0
-                            }}
+                            sx={{ width: 209, fontSize: 8 }}
                             components={["DateTimePicker", "DateTimePicker"]}
                           >
                             <DateTimePicker
-                              sx={{
-                                background: "#3D4044",
-                                borderRadius: "20px",
-                                height: "40px",
-                                width: "426px",
-                                color: "success.main",
-                                "& .MuiSvgIcon-root": { color: "#ffffff" }
-                              }}
                               className={classes.root1}
                               //  label="Controlled picker"
                               value={fromDate}
@@ -311,22 +369,10 @@ export default function LandingPage() {
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <DemoContainer
-                            sx={{
-                              // backgroundColor: "pink",
-                              color: "#fff",
-                              borderRadius: 8,
-                              padding: 0
-                            }}
+                            sx={{ width: 209, fontSize: 8 }}
                             components={["DateTimePicker", "DateTimePicker"]}
                           >
                             <DateTimePicker
-                              sx={{
-                                width: 300,
-                                color: "success.main",
-                                "& .MuiSvgIcon-root": {
-                                  color: "#ffffff"
-                                }
-                              }}
                               className={classes.root1}
                               //  label="Controlled picker"
                               value={ToDate}
@@ -340,7 +386,6 @@ export default function LandingPage() {
                       <Typography className="title" gutterBottom>
                         Select type of event or activity
                       </Typography>
-                      {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
                       <Select
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
@@ -354,8 +399,7 @@ export default function LandingPage() {
                             sx={{
                               display: "flex",
                               flexWrap: "wrap",
-                              gap: 0.5,
-                              ml: 1
+                              gap: 0.5
                             }}
                           >
                             {selected.map((value) => (
@@ -367,7 +411,10 @@ export default function LandingPage() {
                                 sx={{
                                   backgroundColor: "#148291",
                                   color: "#fff",
-                                  fontSize: 18
+                                  "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
+                                    fontSize: 15,
+                                    color: "#fff"
+                                  }
                                 }}
                               />
                             ))}
@@ -377,6 +424,7 @@ export default function LandingPage() {
                       >
                         {eventnames.map((name) => (
                           <MenuItem
+                            className={classes.root}
                             key={name}
                             value={name}
                             style={getStyles(name, eventName, theme)}
@@ -414,11 +462,8 @@ export default function LandingPage() {
                                 sx={{
                                   backgroundColor: "#148291",
                                   color: "#fff",
-                                  "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
-                                    color: "#fff"
-                                  },
-                                  "& .css-11hdbyq-MuiButtonBase-root-MuiChip-root .MuiChip-deleteIcon": {
-                                    fontSize: 10,
+                                  "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
+                                    fontSize: 15,
                                     color: "#fff"
                                   }
                                 }}
@@ -432,6 +477,7 @@ export default function LandingPage() {
                       >
                         {entitynames.map((name) => (
                           <MenuItem
+                            className={classes.root}
                             key={name}
                             value={name}
                             style={getStyles(name, entityName, theme)}
@@ -447,35 +493,6 @@ export default function LandingPage() {
                       </Typography>
                       {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
                       <Select
-                        // sx={{
-                        //   backgroundColor: alpha(
-                        //     theme.palette.common.white,
-                        //     0.15
-                        //   )
-                        //   // "&:hover": {
-                        //   //   backgroundColor: alpha(
-                        //   //     theme.palette.common.white,
-                        //   //     0.25
-                        //   //   )
-                        //   // }
-                        // }}
-                        // sx={{
-                        //   border: 0,
-                        //   //width: 300,
-                        //   // color: 'success.main',
-                        //   "& #demo-customized-select": {
-                        //     border: 0,
-                        //     borderRadius: 8
-                        //   },
-                        //   "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
-                        //     color: "#fff"
-                        //   },
-
-                        //   "& .MuiSelect-iconOpen": {
-                        //     display: "block",
-                        //     color: "#fff"
-                        //   }
-                        // }}
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
                         multiple
@@ -498,10 +515,9 @@ export default function LandingPage() {
                                 sx={{
                                   backgroundColor: "#148291",
                                   color: "#fff",
-
-                                  "& .css-11hdbyq-MuiButtonBase-root-MuiChip-root .MuiChip-deleteIcon": {
-                                    fontSize: 30,
-                                    color: "red"
+                                  "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
+                                    fontSize: 15,
+                                    color: "#fff"
                                   }
                                 }}
                                 onClick={handleClick}
@@ -517,96 +533,44 @@ export default function LandingPage() {
                             key={name}
                             value={name}
                             style={getStyles(name, personName, theme)}
+                            className={classes.root}
+                            // sx={{
+                            //   "&  ul.MuiList-root.MuiList-padding.MuiMenu-list": {
+                            //     backgroundColor: "blue"
+                            //     // font-family: 'Roboto';
+                            //     // font-size: 16px;
+                            //     // font-weight: 400;
+                            //     // line-height: 19px;
+                            //     // letter-spacing: 0em;
+                            //     // text-align: left;
+                            //   },
+
+                            //   "& li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters:hover": {
+                            //     backgroundColor: "yellow"
+                            //   }
+                            // }}
                           >
                             {name}
                           </MenuItem>
                         ))}
                       </Select>
-                      <FormControl
-                        sx={{ mt: 2, width: 426 }}
-                        variant="standard"
-                      >
-                        <Select
-                          sx={{
-                            border: 0,
-                            //width: 300,
-                            // color: 'success.main',
-                            "& #demo-customized-select": {
-                              border: 0,
-                              borderRadius: 8
-                            },
-                            "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
-                              color: "#fff"
-                            },
-                            "& .MuiSelect-iconOpen": {
-                              display: "block",
-                              color: "#fff"
-                            }
-                          }}
-                          className={classes.root}
-                          labelId="demo-customized-select-label"
-                          id="demo-customized-select"
-                          // value={age}
-                          onChange={handleChange}
-                          input={<BootstrapInput />}
-                          MenuProps={{
-                            PaperProps: {
-                              sx: {
-                                // bgcolor: "pink",
-                                "& .css-6hp17o-MuiList-root-MuiMenu-list": {
-                                  padding: 0,
-                                  borderRadius: 10
-                                }
-                                // "& .MuiMenuItem-root": {
-                                //   padding: 2
-                                // }
-                              }
-                            }
-                          }}
-                        >
-                          <MenuItem
-                            // sx={{
-                            //   "& .css-6hp17o-MuiList-root-MuiMenu-list": {
-                            //     backgroundColor: "red",
-                            //     padding: 0
-                            //   },
-                            //   "& ul.MuiList-root": {
-                            //     backgroundColor: "red",
-                            //     padding: 0
-                            //   },
-                            //   "& .MuiList-padding": {
-                            //     backgroundColor: "red",
-                            //     padding: 0
-                            //   },
-                            //   "& .MuiMenu-list": {
-                            //     backgroundColor: "red",
-                            //     padding: 0
-                            //   }
-                            // }}
-                            className={classes.root}
-                            value="{1}"
-                          >
-                            User 1
-                          </MenuItem>
-                          <MenuItem className={classes.root} value={2}>
-                            User 2
-                          </MenuItem>
-                          <MenuItem className={classes.root} value={3}>
-                            User 3
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
                     </FormControl>
-                    <Button
-                      className="btn"
-                      type="submit"
-                      //fullWidth
-                      variant="contained"
-                      sx={{ mt: 2, mb: 2, backgroundColor: "#148291" }}
-                      onClick={() => setValue(!value)}
-                    >
-                      START QUERY
-                    </Button>
+                    <Box display="flex" justifyContent="flex-end">
+                      <Button
+                        className="btn"
+                        type="submit"
+                        //fullWidth
+                        variant="contained"
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "none"
+                          }
+                        }}
+                        onClick={() => setValue(!value)}
+                      >
+                        START QUERY
+                      </Button>
+                    </Box>
                   </Stack>
                 </Box>
               </Box>
@@ -616,7 +580,8 @@ export default function LandingPage() {
             <DetailPage />
           )}
         </Box>
-      </Container>
+      </div>
+      {/* </Container> */}
     </React.Fragment>
   );
 }

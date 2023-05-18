@@ -1,6 +1,7 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  background-color: pink;
 }
 .heading {
   font-family: "Roboto";
@@ -34,7 +35,12 @@
   text-align: left;
 }
 .btn {
-  display: flex;
+  width: 135px;
+  height: 43px;
+  background: #148291;
+  border-radius: 3px;
+  padding: 12px 16px 12px 16px;
+  /* display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -46,5 +52,5 @@
   left: 844px;
   top: 820px;
   background: #148291;
-  border-radius: 3px;
+  border-radius: 3px; */
 }
