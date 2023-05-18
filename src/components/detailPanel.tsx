@@ -23,7 +23,12 @@ const ItemStack = styled("div")(({ theme }) => ({
   backgroundColor: "none",
   padding: theme.spacing(1),
   textAlign: "left",
-  color: "#fff"
+  color: "#fff",
+  fontFamily: "Roboto",
+  fontSize: 16,
+  fontWeight: 500,
+  lineHeight: "21px",
+  letterSpacing: 0
 }));
 
 const Item = styled("div")(({ theme }) => ({
@@ -33,7 +38,11 @@ const Item = styled("div")(({ theme }) => ({
   padding: theme.spacing(0.5),
   borderRadius: "4px",
   textAlign: "left",
-  fontSize: "0.8rem"
+  fontFamily: "Roboto",
+  fontSize: 14,
+  fontWeight: 500,
+  lineHeight: "21px",
+  letterSpacing: 0
 }));
 
 export default function DetailsTab() {
@@ -41,19 +50,18 @@ export default function DetailsTab() {
     <Box sx={{ width: "100%" }}>
       <Grid container rowSpacing={0} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <Grid xs={12}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={1}>
             <ItemStack>
               <AddLocationOutlinedIcon fontSize="large" />
             </ItemStack>
             <ItemStack>
-              <Typography variant="body2" gutterBottom>
+              <Typography variant="caption" gutterBottom>
                 Assignment Event
-                <br />
+              </Typography>
+              <br />
+              <Typography variant="body2" gutterBottom>
                 Asset loaded from EX123
               </Typography>
-            </ItemStack>
-            <ItemStack>
-              <MoreVertIcon sx={{ p: 1 }} fontSize="small" />
             </ItemStack>
           </Stack>
         </Grid>
@@ -67,7 +75,7 @@ export default function DetailsTab() {
           <Item>Circuit created</Item>
         </Grid>
         <Grid xs={6}>
-          <Item>--</Item>
+          <Item>John Smith 30/01/23 23:58 ID 010092</Item>
         </Grid>
         <Grid xs={6}>
           <Item>Material</Item>
@@ -88,18 +96,13 @@ export default function DetailsTab() {
           <Item>ABC</Item>
         </Grid>
         <Grid xs={12} mt={2}>
-          <div>
-            <Typography
-              pl={1}
-              variant="body2"
-              gutterBottom
-              sx={{ textAlign: "left" }}
-            >
-              User Activity
+          <div style={{ backgroundColor: "#3D4044", padding: 8 }}>
+            <Typography variant="body2" gutterBottom sx={{ textAlign: "left" }}>
+              User ACTIVITY (at similar time)
             </Typography>
             <Accordion
               style={{
-                backgroundColor: "#3d444e",
+                backgroundColor: "#3D4044",
                 color: "#fff",
                 textAlign: "left"
               }}
@@ -111,13 +114,22 @@ export default function DetailsTab() {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography pr={2} variant="body2">
+                <Box
+                  sx={{
+                    mr: 1,
+                    width: 18,
+                    height: 18,
+                    bgcolor: "#FFAB00",
+                    borderRadius: 20
+                  }}
+                ></Box>
+                {/* <Typography pr={2} variant="body2">
                   icon
-                </Typography>
-                <Typography variant="body2">username</Typography>
+                </Typography> */}
+                <Typography variant="caption">John Smith</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography variant="body2">
+                <Typography variant="caption">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                   eget.
@@ -126,7 +138,7 @@ export default function DetailsTab() {
             </Accordion>
             <Accordion
               style={{
-                backgroundColor: "#3d444e",
+                backgroundColor: "#3D4044",
                 color: "#fff",
                 textAlign: "left"
               }}
@@ -138,28 +150,25 @@ export default function DetailsTab() {
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
-                <Typography pr={2} variant="body2">
-                  icon
-                </Typography>
-                <Typography variant="body2">username</Typography>
+                <Box
+                  sx={{
+                    mr: 1,
+                    width: 18,
+                    height: 18,
+                    bgcolor: "#FF5630",
+                    borderRadius: 20
+                  }}
+                ></Box>
+                <Typography variant="caption">Jane Lastname</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography variant="body2">
+                <Typography variant="caption">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                   eget.
                 </Typography>
               </AccordionDetails>
             </Accordion>
-            {/* <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Disabled Accordion</Typography>
-        </AccordionSummary>
-      </Accordion> */}
           </div>
         </Grid>
       </Grid>
