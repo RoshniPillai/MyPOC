@@ -41,7 +41,14 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import DetailPanelView from "./detailPanel";
 import LandingPage from "./landing";
 import LoadingSpinner from "./spinner";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import Tooltip from "@mui/material/Tooltip";
+import dayjs, { Dayjs } from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+
 const useStyles = makeStyles({
   root: {
     height: 30,
@@ -61,27 +68,32 @@ const useStyles = makeStyles({
     }
   },
   root1: {
-    //width: 10,
-    backgroundColor: "",
-    "&:hover": {
-      // color: "red",
-      // backgroundColor: "blue"
+    backgroundColor: "#3D4044",
+    background: "#3D4044",
+    borderRadius: "6px",
+    //height: "40px",
+    // width: "209px",
+    minWidth: "100px !important",
+    paddingLeft: 8,
+    fontSize: 12,
+
+    "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd.MuiInputAdornment-outlined.MuiInputAdornment-sizeMedium ": {
+      position: "absolute",
+      left: 0
     },
+    "& .MuiSvgIcon-root": { color: "#ffffff", width: 15 },
     "& .MuiOutlinedInput-input": {
       color: "#ffffff",
-      fontSize: "0.85rem",
-      width: 110,
-      padding: 8
+      fontSize: 10,
+      fontWeight: 400,
+      lineHeight: 19,
+      letterSpacing: 0,
+      fontStyle: "normal",
+      textAlign: "left",
+      padding: "5px 10px 5px 30px"
     },
     "&.MuiInputAdornment-positionEnd": {
       color: "#ffffff"
-    },
-    //MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root
-    "& .MuiInputLabel-root": {
-      // color: "green"
-    },
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      //  borderColor: "green"
     }
   },
 
@@ -177,10 +189,13 @@ function Item(props: BoxProps) {
         fontFamily: "Roboto",
         fontSize: 12,
         fontWeight: 400,
-        lineHeight: "19px",
+        lineHeight: "40px",
         letterSpacing: 0,
         textAlign: "left",
-        border: 0
+        border: 0,
+        border: "1px solid red",
+        margin: "auto 0",
+        padding: 0
         // ...sx
       }}
       {...other}
@@ -262,7 +277,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(0)
   },
   "& .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon": {
     color: "#fff"
@@ -275,7 +290,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     position: "relative",
     backgroundColor: "#28292B",
     fontFamily: "Roboto",
-    fontSize: "18px",
+    fontSize: "10px",
     fontWeight: 400,
     lineHeight: "21px",
     letterSpacing: "0em",
@@ -286,9 +301,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   }
 }));
 
-const theme = createTheme();
-
 export default function DetailPage() {
+  const theme = createTheme();
+
   /* go back to landing page */
   const [value, setValue] = React.useState(true);
   /* sipnner */
@@ -305,6 +320,15 @@ export default function DetailPage() {
     //     setUsers(respose.data)
     //  });
   };
+  /* for calender */
+  const [fromDate, setFromDate] = React.useState<Dayjs | null>(
+    dayjs("2023-04-17T15:30")
+  );
+  console.log("new date selected is", fromDate);
+  const [ToDate, setToDate] = React.useState<Dayjs | null>(
+    dayjs("2023-04-17T15:30")
+  );
+  console.log("new date selected is", ToDate);
   /*on table row click */
   const [selectedID, setSelectedID] = React.useState(0);
   console.log({ selectedID });
@@ -365,7 +389,8 @@ export default function DetailPage() {
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "space-between",
-                        p: 1
+                        p: 0,
+                        padding: "0 20px"
                       }}
                     >
                       <Item>
@@ -396,15 +421,6 @@ export default function DetailPage() {
                           </Button>
                         </div>
                       </Item>
-                      <Item></Item>
-                      <Item></Item>
-                      <Item></Item>
-                      <Item></Item>
-                      <Item></Item>
-                      <Item></Item>
-                      <Item></Item>
-                      <Item></Item>
-                      <Item></Item>
                       <Item>
                         <Button
                           type="submit"
@@ -433,7 +449,8 @@ export default function DetailPage() {
                     </Box>
                     <Box
                       sx={{
-                        background: "#3D4044"
+                        background: "#3D4044",
+                        padding: "0 12px"
                         //height: 100,
                         // minHeight:90
                       }}
@@ -464,7 +481,63 @@ export default function DetailPage() {
                                 fontSize: 12
                               }}
                             >
-                              Placeholder
+                              <Stack
+                                direction="row"
+                                spacing={0}
+                                sx={{ padding: 0, overflow: "hidden" }}
+                              >
+                                <LocalizationProvider
+                                  dateAdapter={AdapterDayjs}
+                                >
+                                  <DemoContainer
+                                    // sx={{ width: 209, fontSize: 8 }}
+                                    components={[
+                                      "DateTimePicker",
+                                      "DateTimePicker"
+                                    ]}
+                                  >
+                                    <DateTimePicker
+                                      //inputFormat="DD/MM/YY"
+                                      ampm={false}
+                                      className={classes.root1}
+                                      label=""
+                                      value={fromDate}
+                                      onChange={(newValue) =>
+                                        setFromDate(newValue)
+                                      }
+                                      components={{
+                                        OpenPickerIcon: CalendarTodayOutlinedIcon
+                                      }}
+                                    />
+                                  </DemoContainer>
+                                </LocalizationProvider>
+                                {"-"}
+                                <LocalizationProvider
+                                  dateAdapter={AdapterDayjs}
+                                >
+                                  <DemoContainer
+                                    // sx={{ width: 209, fontSize: 8 }}
+                                    components={[
+                                      "DateTimePicker",
+                                      "DateTimePicker"
+                                    ]}
+                                  >
+                                    <DateTimePicker
+                                      //inputFormat="DD/MM/YY"
+                                      ampm={false}
+                                      className={classes.root1}
+                                      label=""
+                                      value={fromDate}
+                                      onChange={(newValue) =>
+                                        setFromDate(newValue)
+                                      }
+                                      components={{
+                                        OpenPickerIcon: CalendarTodayOutlinedIcon
+                                      }}
+                                    />
+                                  </DemoContainer>
+                                </LocalizationProvider>
+                              </Stack>
                             </Box>
                           </Stack>
                         </StackItem>
