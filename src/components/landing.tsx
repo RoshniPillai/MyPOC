@@ -195,7 +195,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     fontFamily: "Roboto",
     fontSize: "18px",
     fontWeight: 400,
-    lineHeight: "21px",
+    lineHeight: "40px",
     letterSpacing: "0em",
     color: "#fff",
     //padding: "10px 26px 10px 12px",
@@ -386,7 +386,6 @@ export default function LandingPage() {
                           display: "flex",
                           flexWrap: "wrap",
                           gap: 0.5
-                          // border: "1px solid yellow"
                         }}
                       >
                         {selected.map((value) => (
@@ -403,6 +402,7 @@ export default function LandingPage() {
                               fontStyle: "normal",
                               fontWeight: 400,
                               lineHeight: "21px",
+                              height: 40,
                               "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
                                 fontSize: 18,
                                 color: "#fff"
@@ -459,6 +459,7 @@ export default function LandingPage() {
                               fontStyle: "normal",
                               fontWeight: 400,
                               lineHeight: "21px",
+                              height: 40,
                               "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
                                 fontSize: 18,
                                 color: "#fff"
@@ -517,6 +518,7 @@ export default function LandingPage() {
                               fontStyle: "normal",
                               fontWeight: 400,
                               lineHeight: "21px",
+                              height: 40,
                               "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
                                 fontSize: 18,
                                 color: "#fff"
