@@ -11,7 +11,7 @@ function createData(
 
 export const rows = [
   createData(
-    "31/3/23 14:16:64",
+    "31/3/23 14:16",
     1,
     "Asset Update",
     "Update permissions",
@@ -19,7 +19,7 @@ export const rows = [
     "John Smith"
   ),
   createData(
-    "31/3/23 14:16:6",
+    "31/3/23 14:16",
     2,
     "Asset Update",
     "Delete",
@@ -27,18 +27,18 @@ export const rows = [
     "Tes T’Account"
   ),
   createData(
-    "31/3/23 14:16:6",
+    "31/3/23 14:16",
     3,
     "Notification Sent",
     "content",
     "content",
     "content"
   ),
-  createData("31/3/23 14:16:6", 4, "content", "content", "content", "content"),
-  createData("31/3/23 14:16:6", 5, "content", "content", "content", "content"),
-  createData("31/3/23 14:16:6", 6, "content", "content", "content", "content"),
-  createData("31/3/23 14:16:6", 7, "content", "content", "content", "content"),
-  createData("31/3/23 14:16:6", 8, "content", "content", "content", "content")
+  createData("31/3/23 14:16", 4, "content", "content", "content", "content"),
+  createData("31/3/23 14:16", 5, "content", "content", "content", "content"),
+  createData("31/3/23 14:16", 6, "content", "content", "content", "content"),
+  createData("31/3/23 14:16", 7, "content", "content", "content", "content"),
+  createData("31/3/23 14:16", 8, "content", "content", "content", "content")
 ];
 export const entityName = [
   {

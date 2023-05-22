@@ -840,7 +840,6 @@ export default function DetailPage() {
                                       <StyledTableCell
                                         component="th"
                                         scope="row"
-                                        width="100px"
                                       >
                                         {row.date}
                                       </StyledTableCell>
