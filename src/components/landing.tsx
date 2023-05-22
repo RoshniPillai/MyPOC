@@ -19,7 +19,7 @@ import { styled } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import DetailPage from "./detail";
 
 // const ITEM_HEIGHT = 48;
@@ -64,12 +64,12 @@ const useStyles = makeStyles({
     width: "209px",
     minWidth: "209px !important",
     paddingLeft: 8,
-    fontSize: 8,
+    fontSize: 16,
+
     "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd.MuiInputAdornment-outlined.MuiInputAdornment-sizeMedium ": {
       position: "absolute",
       left: 0
     },
-    // color: "success.main",
     "& .MuiSvgIcon-root": { color: "#ffffff", width: 15 },
     "&:hover": {
       // color: "red",
@@ -77,13 +77,12 @@ const useStyles = makeStyles({
     },
     "& .MuiOutlinedInput-input": {
       color: "#ffffff",
-      fontFamily: "Roboto",
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: 400,
       lineHeight: 19,
       letterSpacing: 0,
+      fontStyle: "normal",
       textAlign: "left",
-      // paddingLeft: 40,
       padding: "10px 20px 10px 40px"
     },
     "&.MuiInputAdornment-positionEnd": {
@@ -297,36 +296,41 @@ export default function LandingPage() {
               }}
             >
               <Stack spacing={2}>
-                {/* <Typography className="subHeading" guterBottom>
-                      New audit query
-                    </Typography>
-                    <Typography className="title" gutterBottom>
-                      Select a date range
-                    </Typography> */}
-                <Typography component="h5" variant="h5">
+                <Typography className="heading" component="div">
                   New audit query
                 </Typography>
-                <Typography variant="subtitle2" gutterBottom>
+                <Typography className="title" component="div">
                   Select a date range
                 </Typography>
+                {/* <Typography component="h5" variant="h5">
+                  New audit query
+                </Typography> */}
+                {/* <Typography variant="subtitle2" gutterBottom>
+                  Select a date range
+                </Typography> */}
                 <Stack direction="row" spacing={1}>
                   <Stack spacing={0}>
                     {/* <Typography className="subTitle" gutterBottom>
                           From
                         </Typography> */}
-                    <Typography variant="caption" gutterBottom>
+                    <Typography className="subTitle" component="div">
                       From
                     </Typography>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DemoContainer
-                        sx={{ width: 209, fontSize: 8 }}
+                        // sx={{ width: 209, fontSize: 8 }}
                         components={["DateTimePicker", "DateTimePicker"]}
                       >
                         <DateTimePicker
+                          //inputFormat="DD/MM/YY"
+                          ampm={false}
                           className={classes.root1}
-                          //  label="Controlled picker"
+                          label=""
                           value={fromDate}
                           onChange={(newValue) => setFromDate(newValue)}
+                          components={{
+                            OpenPickerIcon: CalendarTodayOutlinedIcon
+                          }}
                         />
                       </DemoContainer>
                     </LocalizationProvider>
@@ -335,19 +339,21 @@ export default function LandingPage() {
                     {/* <Typography className="subTitle" gutterBottom>
                           To
                         </Typography> */}
-                    <Typography variant="caption" gutterBottom>
+                    <Typography className="subTitle" component="div">
                       To
                     </Typography>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DemoContainer
-                        sx={{ width: 209, fontSize: 8 }}
                         components={["DateTimePicker", "DateTimePicker"]}
                       >
                         <DateTimePicker
                           className={classes.root1}
-                          //  label="Controlled picker"
+                          label=""
                           value={ToDate}
                           onChange={(newValue) => setToDate(newValue)}
+                          components={{
+                            OpenPickerIcon: CalendarTodayOutlinedIcon
+                          }}
                         />
                       </DemoContainer>
                     </LocalizationProvider>
@@ -357,7 +363,7 @@ export default function LandingPage() {
                   {/* <Typography className="title" gutterBottom>
                         Select type of event or activity
                       </Typography> */}
-                  <Typography mb={1} variant="subtitle2" gutterBottom>
+                  <Typography className="title" component="div">
                     Select type of event or activity
                   </Typography>
                   <Select
@@ -410,10 +416,7 @@ export default function LandingPage() {
                 </FormControl>
 
                 <FormControl sx={{ m: 1, width: 426 }}>
-                  {/* <Typography className="title" gutterBottom>
-                        Select entity or asset
-                      </Typography> */}
-                  <Typography mb={1} variant="subtitle2" gutterBottom>
+                  <Typography className="title" component="div">
                     Select entity or asset
                   </Typography>
                   <Select
@@ -465,10 +468,7 @@ export default function LandingPage() {
                   </Select>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: 426 }}>
-                  {/* <Typography className="title" gutterBottom>
-                        Select users
-                      </Typography> */}
-                  <Typography mb={1} variant="subtitle2" gutterBottom>
+                  <Typography className="title" component="div">
                     Select users
                   </Typography>
                   {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}

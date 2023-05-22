@@ -408,6 +408,7 @@ export default function DetailPage() {
                           type="submit"
                           size="small"
                           variant="outlined"
+                          className="btn-secondary"
                           sx={{
                             backgroundColor: "transparent",
                             color: "#fff",

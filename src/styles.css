@@ -1,21 +1,14 @@
 body {
   padding: 0;
   margin: 0;
-}
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
-.heading {
   font-family: "Roboto";
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
   color: "#ffffff";
 }
-.subHeading {
+/* .App {
+  font-family: sans-serif;
+  text-align: center;
+} */
+.heading {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
@@ -37,8 +30,8 @@ body {
   letter-spacing: 0em;
   text-align: left;
 }
-.primarybtn,
-.primarybtn:hover {
+.App .primarybtn,
+.App .primarybtn:hover {
   width: 135px;
   height: 43px;
   background: #148291;
@@ -57,4 +50,9 @@ body {
   top: 820px;
   background: #148291;
   border-radius: 3px; */
+}
+button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {
+  background-color: "transparent";
+  color: "#fff";
+  border: 1px solid #fff;
 }
