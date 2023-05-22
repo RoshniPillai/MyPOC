@@ -40,10 +40,14 @@ const useStyles = makeStyles({
     //width: 200,
     paddingTop: 0,
     margin: 0,
-    borderRadius: 20,
+    //borderRadius: 8,
     color: "#fff !important",
-    backgroundColor: "#3D4044 !important",
-    fontSize: "12px !important",
+    // backgroundColor: "#3D4044 !important",
+    // fontSize: "23px !important",
+    fontWeight: 400,
+    fontSize: "16px",
+    lineHeight: "19px",
+
     "& ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list": {},
     "& .css-6hp17o-MuiList-root-MuiMenu-list": {},
     "&:hover": {
@@ -126,7 +130,7 @@ const MenuProps = {
       // bgcolor: "pink",
       "& .css-6hp17o-MuiList-root-MuiMenu-list": {
         padding: 0,
-        borderRadius: 10,
+        borderRadius: 20,
         backgroundColor: "#3D4044"
       },
       "& .MuiList-root.MuiList-padding.MuiMenu-list": {
@@ -183,6 +187,8 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     color: "#fff"
   },
   "& .MuiInputBase-input": {
+    padding: 0,
+    // border: '1px solid yellow',
     borderRadius: "20px",
     position: "relative",
     backgroundColor: "#3D4044",
@@ -363,7 +369,7 @@ export default function LandingPage() {
                   {/* <Typography className="title" gutterBottom>
                         Select type of event or activity
                       </Typography> */}
-                  <Typography className="title" component="div">
+                  <Typography className="title" component="div" gutterBottom>
                     Select type of event or activity
                   </Typography>
                   <Select
@@ -380,6 +386,7 @@ export default function LandingPage() {
                           display: "flex",
                           flexWrap: "wrap",
                           gap: 0.5
+                          // border: "1px solid yellow"
                         }}
                       >
                         {selected.map((value) => (
@@ -390,9 +397,14 @@ export default function LandingPage() {
                             onDelete={handleDelete}
                             sx={{
                               backgroundColor: "#148291",
+                              borderRadius: 18,
                               color: "#fff",
+                              fontSize: 18,
+                              fontStyle: "normal",
+                              fontWeight: 400,
+                              lineHeight: "21px",
                               "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
-                                fontSize: 15,
+                                fontSize: 18,
                                 color: "#fff"
                               }
                             }}
@@ -416,7 +428,7 @@ export default function LandingPage() {
                 </FormControl>
 
                 <FormControl sx={{ m: 1, width: 426 }}>
-                  <Typography className="title" component="div">
+                  <Typography className="title" component="div" gutterBottom>
                     Select entity or asset
                   </Typography>
                   <Select
@@ -441,9 +453,14 @@ export default function LandingPage() {
                             label={value}
                             sx={{
                               backgroundColor: "#148291",
+                              borderRadius: 18,
                               color: "#fff",
+                              fontSize: 18,
+                              fontStyle: "normal",
+                              fontWeight: 400,
+                              lineHeight: "21px",
                               "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
-                                fontSize: 15,
+                                fontSize: 18,
                                 color: "#fff"
                               }
                             }}
@@ -468,7 +485,7 @@ export default function LandingPage() {
                   </Select>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: 426 }}>
-                  <Typography className="title" component="div">
+                  <Typography className="title" component="div" gutterBottom>
                     Select users
                   </Typography>
                   {/* <InputLabel sx={{ }} id="demo-multiple-chip-label">Select users</InputLabel>  */}
@@ -494,9 +511,14 @@ export default function LandingPage() {
                             label={value}
                             sx={{
                               backgroundColor: "#148291",
+                              borderRadius: 18,
                               color: "#fff",
+                              fontSize: 18,
+                              fontStyle: "normal",
+                              fontWeight: 400,
+                              lineHeight: "21px",
                               "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
-                                fontSize: 15,
+                                fontSize: 18,
                                 color: "#fff"
                               }
                             }}
