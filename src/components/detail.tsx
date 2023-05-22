@@ -32,6 +32,7 @@ import { rows } from "./data";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
+import SyncIcon from "@mui/icons-material/Sync";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
@@ -40,6 +41,7 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import DetailPanelView from "./detailPanel";
 import LandingPage from "./landing";
 import LoadingSpinner from "./spinner";
+import Tooltip from "@mui/material/Tooltip";
 const useStyles = makeStyles({
   root: {
     height: 30,
@@ -178,9 +180,6 @@ function Item(props: BoxProps) {
         lineHeight: "19px",
         letterSpacing: 0,
         textAlign: "left",
-
-        // fontSize: "0.875rem",
-        // fontWeight: "700",
         border: 0
         // ...sx
       }}
@@ -296,6 +295,9 @@ export default function DetailPage() {
   const [isLoading, setIsLoading] = React.useState(false);
   const showSpinner = () => {
     setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
     // setIsLoading(true);
     // fetch("https://reqres.in/api/users?page=0")
     //   .then((respose) => respose.json())
@@ -367,13 +369,20 @@ export default function DetailPage() {
                       }}
                     >
                       <Item>
-                        <Typography variant="subtitle2" gutterBottom>
+                        <Typography className="subHeading" component="div">
                           Audit results
                         </Typography>
                       </Item>
                       <Item>
-                        <Typography variant="subtitle2" gutterBottom>
-                          9 records found
+                        <Typography
+                          component="div"
+                          sx={{
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "19px"
+                          }}
+                        >
+                          {rows.length} records found
                         </Typography>
                       </Item>
                       <Item>
@@ -383,20 +392,13 @@ export default function DetailPage() {
                             onClick={showSpinner}
                             disabled={isLoading}
                           >
-                            <AutorenewIcon
-                              sx={{ color: "#fff" }}
-                              fontSize="small"
-                            />
+                            <SyncIcon sx={{ color: "#fff" }} fontSize="small" />
                           </Button>
-                          {/* <Snackbar
-                              open={open}
-                              autoHideDuration={6000}
-                              onClose={handleClose}
-                              message="Table is being refreshed"
-                              action={action}
-                            /> */}
                         </div>
                       </Item>
+                      <Item></Item>
+                      <Item></Item>
+                      <Item></Item>
                       <Item></Item>
                       <Item></Item>
                       <Item></Item>
@@ -409,11 +411,6 @@ export default function DetailPage() {
                           size="small"
                           variant="outlined"
                           className="btn-secondary"
-                          sx={{
-                            backgroundColor: "transparent",
-                            color: "#fff",
-                            borderColor: "#fff"
-                          }}
                           onClick={() => setValue(!value)}
                           startIcon={<ArrowBackIcon fontSize="small" />}
                         >
@@ -421,7 +418,17 @@ export default function DetailPage() {
                         </Button>
                       </Item>
                       <Item>
-                        <DownloadIcon sx={{}} fontSize="small" />
+                        <Tooltip
+                          title="Export to Excel"
+                          placement="right-start"
+                        >
+                          <Button sx={{ p: 0 }}>
+                            <DownloadIcon
+                              sx={{ color: "#fff" }}
+                              fontSize="medium"
+                            />
+                          </Button>
+                        </Tooltip>
                       </Item>
                     </Box>
                     <Box

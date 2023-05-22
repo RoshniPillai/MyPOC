@@ -77,3 +77,21 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {
   background-color: #148291;
   color: #fff;
 }
+.subHeading{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+}
+.btn-secondary{
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+display: flex;
+align-items: center;
+text-align: center;
+text-transform: uppercase;
+color: #ffffff;
+border-radius: 3px;
+}
