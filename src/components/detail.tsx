@@ -39,6 +39,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import DetailPanelView from "./detailPanel";
 import LandingPage from "./landing";
+import LoadingSpinner from "./spinner";
 const useStyles = makeStyles({
   root: {
     height: 30,
@@ -291,6 +292,17 @@ const theme = createTheme();
 export default function DetailPage() {
   /* go back to landing page */
   const [value, setValue] = React.useState(true);
+  /* sipnner */
+  const [isLoading, setIsLoading] = React.useState(false);
+  const showSpinner = () => {
+    setIsLoading(true);
+    // setIsLoading(true);
+    // fetch("https://reqres.in/api/users?page=0")
+    //   .then((respose) => respose.json())
+    //   .then((respose) => {
+    //     setUsers(respose.data)
+    //  });
+  };
   /*on table row click */
   const [selectedID, setSelectedID] = React.useState(0);
   console.log({ selectedID });
@@ -366,15 +378,16 @@ export default function DetailPage() {
                       </Item>
                       <Item>
                         <div>
-                          {/* <Button
+                          <Button
                             sx={{ p: 0 }}
-                            //onClick={handleClick}
-                          > */}
-                          <AutorenewIcon
-                            sx={{ color: "#fff" }}
-                            fontSize="small"
-                          />
-                          {/* </Button> */}
+                            onClick={showSpinner}
+                            disabled={isLoading}
+                          >
+                            <AutorenewIcon
+                              sx={{ color: "#fff" }}
+                              fontSize="small"
+                            />
+                          </Button>
                           {/* <Snackbar
                               open={open}
                               autoHideDuration={6000}
@@ -559,26 +572,30 @@ export default function DetailPage() {
                         </StackItem>
                       </Stack>
                     </Box>
-                    <Box>
-                      <Paper
-                        square
-                        sx={{
-                          width: "100%",
-                          overflow: "hidden",
-                          borderRadius: 0,
-                          backgroundColor: "#52575D",
-                          minHeight: 450
-                        }}
-                      >
-                        <TableContainer
-                          component={Paper}
-                          //sx={{ maxHeight: 340 }}
-                        >
-                          <Table
-                            sx={{ minWidth: 700, minHeight: 0 }}
-                            aria-label="customized table"
+                    {isLoading ? (
+                      <LoadingSpinner />
+                    ) : (
+                      <>
+                        <Box>
+                          <Paper
+                            square
+                            sx={{
+                              width: "100%",
+                              overflow: "hidden",
+                              borderRadius: 0,
+                              backgroundColor: "#52575D",
+                              minHeight: 450
+                            }}
                           >
-                            {/* <TableHead>
+                            <TableContainer
+                              component={Paper}
+                              //sx={{ maxHeight: 340 }}
+                            >
+                              <Table
+                                sx={{ minWidth: 700, minHeight: 0 }}
+                                aria-label="customized table"
+                              >
+                                {/* <TableHead>
                                   <TableRow>
                                     <StyledTableCell>Date</StyledTableCell>
                                     <StyledTableCell align="right">
@@ -599,60 +616,66 @@ export default function DetailPage() {
                                     <StyledTableCell align="right"></StyledTableCell>
                                   </TableRow>
                                 </TableHead> */}
-                            <TableBody sx={{ maxHeight: 120 }}>
-                              {rows.map((row) => (
-                                <StyledTableRow
-                                  //key={row.date}
-                                  // onClick={() => setSelectedRow(!selectedRow)}
-                                  key={row.id}
-                                  onClick={() => {
-                                    setSelectedID(row.id);
-                                    console.log("selected row is", selectedID);
-                                  }}
-                                  selected={selectedID === row.id}
-                                  classes={{
-                                    hover: classes.hover,
-                                    selected: classes.selected
-                                  }}
-                                  className={classes.tableRow}
-                                  // classes={{
-                                  //   root: classes.tableRowRoot,
-                                  //   selected: classes.tableRowSelected
-                                  // }}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0
-                                    }
-                                  }}
-                                >
-                                  <StyledTableCell component="th" scope="row">
-                                    {row.date}
-                                  </StyledTableCell>
-                                  <StyledTableCell align="right">
-                                    {row.id}
-                                  </StyledTableCell>
-                                  <StyledTableCell align="right">
-                                    {row.entityType}
-                                  </StyledTableCell>
-                                  <StyledTableCell align="right">
-                                    {row.entity}
-                                  </StyledTableCell>
-                                  <StyledTableCell align="right">
-                                    {row.action}
-                                  </StyledTableCell>
-                                  <StyledTableCell align="right">
-                                    {row.user}
-                                  </StyledTableCell>
-                                  {/* <StyledTableCell align="right">
+                                <TableBody sx={{ maxHeight: 120 }}>
+                                  {rows.map((row) => (
+                                    <StyledTableRow
+                                      //key={row.date}
+                                      // onClick={() => setSelectedRow(!selectedRow)}
+                                      key={row.id}
+                                      onClick={() => {
+                                        setSelectedID(row.id);
+                                        console.log(
+                                          "selected row is",
+                                          selectedID
+                                        );
+                                      }}
+                                      selected={selectedID === row.id}
+                                      classes={{
+                                        hover: classes.hover,
+                                        selected: classes.selected
+                                      }}
+                                      className={classes.tableRow}
+                                      // classes={{
+                                      //   root: classes.tableRowRoot,
+                                      //   selected: classes.tableRowSelected
+                                      // }}
+                                      sx={{
+                                        "&:last-child td, &:last-child th": {
+                                          border: 0
+                                        }
+                                      }}
+                                    >
+                                      <StyledTableCell
+                                        component="th"
+                                        scope="row"
+                                      >
+                                        {row.date}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.id}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.entityType}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.entity}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.action}
+                                      </StyledTableCell>
+                                      <StyledTableCell align="right">
+                                        {row.user}
+                                      </StyledTableCell>
+                                      {/* <StyledTableCell align="right">
                                     <MoreVertIcon
                                       sx={{ }}
                                       fontSize="small"
                                     />
                                   </StyledTableCell> */}
-                                </StyledTableRow>
-                              ))}
-                            </TableBody>
-                            {/* <TableFooter>
+                                    </StyledTableRow>
+                                  ))}
+                                </TableBody>
+                                {/* <TableFooter>
                           <TableRow>
                             <TablePagination
                               rowsPerPageOptions={
@@ -679,33 +702,34 @@ export default function DetailPage() {
                             />
                           </TableRow>
                         </TableFooter> */}
-                          </Table>
-                        </TableContainer>
-                      </Paper>
-                      <Box
-                        sx={{
-                          backgroundColor: "#52575D",
-                          "&  .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
-                            color: "#ffffff",
-                            backgroundColor: "#148291",
-                            borderRadius: 1
-                          }
-                        }}
-                        //m={1}
-                        p={1}
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                      >
-                        <Pagination
-                          sx={{ textAlign: "center" }}
-                          count={1}
-                          showFirstButton
-                          showLastButton
-                        />
-                      </Box>
-                      {/* <TableSearch /> */}
-                    </Box>
+                              </Table>
+                            </TableContainer>
+                          </Paper>
+                          <Box
+                            sx={{
+                              backgroundColor: "#52575D",
+                              "&  .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected": {
+                                color: "#ffffff",
+                                backgroundColor: "#148291",
+                                borderRadius: 1
+                              }
+                            }}
+                            //m={1}
+                            p={1}
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <Pagination
+                              sx={{ textAlign: "center" }}
+                              count={1}
+                              showFirstButton
+                              showLastButton
+                            />
+                          </Box>
+                        </Box>
+                      </>
+                    )}
                   </Box>
                 </Item1>
                 <Item1

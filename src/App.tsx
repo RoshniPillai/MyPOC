@@ -18,7 +18,7 @@ export default function App() {
         <Box
           sx={{
             bgcolor: "#232425",
-            width: "80%",
+            // width: "80%",
             minHeight: "100vh",
             maxHeight: "100vh"
           }}
