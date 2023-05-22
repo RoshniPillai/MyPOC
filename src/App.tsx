@@ -30,11 +30,8 @@ export default function App() {
               height: "30px"
             }}
           >
-            {/* <Typography className="heading" sx={{ p: 1, color: "#ffffff" }} >
-              AUDIT
-            </Typography> */}
             <Typography
-              variant="subtitle1"
+              component="div"
               gutterBottom
               sx={{
                 fontFamily: "Roboto",
@@ -42,17 +39,13 @@ export default function App() {
                 textTransform: "uppercase",
                 fontSize: 16,
                 fontWeight: 700,
-                // lineHeight: 19,
-                // letterSpacing: 0,
                 textAlign: "left",
-
-                // margin: 0,
-                // height: "",
                 paddingLeft: 1,
                 color: "#fff"
+                //lineHeight: 19,
               }}
             >
-              AUDIT
+              Audit
             </Typography>
           </Box>
 
