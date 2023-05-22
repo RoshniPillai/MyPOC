@@ -48,6 +48,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { Hidden } from "@mui/material";
 
 const useStyles = makeStyles({
   root: {
@@ -57,7 +58,7 @@ const useStyles = makeStyles({
     margin: 0,
     color: "#fff !important",
     fontSize: "12px !important",
-    backgroundColor: "#616161 !important",
+    backgroundColor: "#3D4044 !important",
     "&:hover": {
       color: "#fff",
       backgroundColor: "#148291 !important"
@@ -76,10 +77,9 @@ const useStyles = makeStyles({
     minWidth: "100px !important",
     paddingLeft: 8,
     fontSize: 12,
-
     "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd.MuiInputAdornment-outlined.MuiInputAdornment-sizeMedium ": {
       position: "absolute",
-      left: 0
+      left: -10
     },
     "& .MuiSvgIcon-root": { color: "#ffffff", width: 15 },
     "& .MuiOutlinedInput-input": {
@@ -90,7 +90,7 @@ const useStyles = makeStyles({
       letterSpacing: 0,
       fontStyle: "normal",
       textAlign: "left",
-      padding: "5px 10px 5px 30px"
+      padding: "5px 0px 5px 30px"
     },
     "&.MuiInputAdornment-positionEnd": {
       color: "#ffffff"
@@ -132,6 +132,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  padding: "0 20px",
   "&:nth-of-type(odd)": {
     //  backgroundColor: theme.palette.action.hover,
     backgroundColor: "#121212"
@@ -166,7 +167,15 @@ const MenuProps = {
     }
   }
 };
-
+const eventnames = [
+  "Assignments & Circuits ",
+  "Map Editing",
+  "Notifications",
+  "Asset Health ",
+  "Assset Config",
+  "User Config"
+];
+const actionnames = ["Update ", "Delete", "Asset loading"];
 const names = ["Oliver ", "Wilson", "April", "Ralph "];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
@@ -247,7 +256,7 @@ const Search = styled("div")(({ theme }) => ({
   },
   marginLeft: 0,
   width: "100%",
-  height: 30,
+  height: 24,
   [theme.breakpoints.up("sm")]: {
     //   marginLeft: theme.spacing(1),
     width: "auto"
@@ -272,7 +281,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(2)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
-    fontSize: 13
+    fontSize: 12
   }
 }));
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -292,8 +301,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     fontFamily: "Roboto",
     fontSize: "10px",
     fontWeight: 400,
-    lineHeight: "21px",
+    lineHeight: "24px",
     letterSpacing: "0em",
+    padding: 0,
     color: "#fff",
     "&:focus": {
       borderRadius: "6px"
@@ -332,7 +342,34 @@ export default function DetailPage() {
   /*on table row click */
   const [selectedID, setSelectedID] = React.useState(0);
   console.log({ selectedID });
+  /* for select boxes */
+  const [eventName, setEventName] = React.useState<string[]>([]);
 
+  const handleChangeEventName = (
+    event: SelectChangeEvent<typeof eventName>
+  ) => {
+    const {
+      target: { value }
+    } = event;
+    setEventName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+  /* for select boxes */
+  const [actionName, setActionName] = React.useState<string[]>([]);
+
+  const handleChangeActionName = (
+    event: SelectChangeEvent<typeof actionName>
+  ) => {
+    const {
+      target: { value }
+    } = event;
+    setActionName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
   /*for chip */
   const [personName, setPersonName] = React.useState<string[]>([]);
 
@@ -473,24 +510,30 @@ export default function DetailPage() {
                                 fontSize="small"
                               />
                             </Typography>
-                            <Box
+
+                            <Stack
+                              direction="row"
+                              spacing={0}
                               sx={{
+                                height: 24,
                                 bgcolor: "#28292B",
-                                p: 0.7,
                                 borderRadius: "6px",
-                                fontSize: 12
+                                padding: "0 !important",
+                                overflow: "hidden"
                               }}
                             >
-                              <Stack
-                                direction="row"
-                                spacing={0}
-                                sx={{ padding: 0, overflow: "hidden" }}
-                              >
+                              <Box display="flex" flex-direction="row">
                                 <LocalizationProvider
                                   dateAdapter={AdapterDayjs}
                                 >
                                   <DemoContainer
-                                    // sx={{ width: 209, fontSize: 8 }}
+                                    sx={{
+                                      // border: "1px solid yellow",
+                                      height: 24,
+                                      overflow: "hidden",
+                                      padding: 0,
+                                      borderRadius: "6px"
+                                    }}
                                     components={[
                                       "DateTimePicker",
                                       "DateTimePicker"
@@ -498,7 +541,7 @@ export default function DetailPage() {
                                   >
                                     <DateTimePicker
                                       //inputFormat="DD/MM/YY"
-                                      ampm={false}
+                                      sx={{ backgroundColor: "#28292B" }}
                                       className={classes.root1}
                                       label=""
                                       value={fromDate}
@@ -511,20 +554,26 @@ export default function DetailPage() {
                                     />
                                   </DemoContainer>
                                 </LocalizationProvider>
-                                {"-"}
+                                {/* <Box>{"-"}</Box> */}
                                 <LocalizationProvider
                                   dateAdapter={AdapterDayjs}
                                 >
                                   <DemoContainer
-                                    // sx={{ width: 209, fontSize: 8 }}
                                     components={[
                                       "DateTimePicker",
                                       "DateTimePicker"
                                     ]}
+                                    sx={{
+                                      // border: "1px solid yellow",
+                                      borderRadius: "6px",
+                                      height: 24,
+                                      overflow: "hidden",
+                                      padding: 0
+                                    }}
                                   >
                                     <DateTimePicker
                                       //inputFormat="DD/MM/YY"
-                                      ampm={false}
+                                      sx={{ backgroundColor: "#28292B" }}
                                       className={classes.root1}
                                       label=""
                                       value={fromDate}
@@ -537,8 +586,8 @@ export default function DetailPage() {
                                     />
                                   </DemoContainer>
                                 </LocalizationProvider>
-                              </Stack>
-                            </Box>
+                              </Box>
+                            </Stack>
                           </Stack>
                         </StackItem>
                         <StackItem>
@@ -560,7 +609,7 @@ export default function DetailPage() {
                           >
                             Event Types
                             <div>
-                              <FormControl sx={{ m: 0, width: 100 }}>
+                              <FormControl sx={{ m: 0, width: 150 }}>
                                 <Select
                                   labelId="demo-multiple-chip-label"
                                   id="demo-multiple-chip"
@@ -568,7 +617,7 @@ export default function DetailPage() {
                                   value={personName}
                                   input={<BootstrapInput />}
                                   onChange={handleChange}
-                                  // input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                                  sx={{ padding: 0, borderRadius: 6 }}
                                   renderValue={(selected) => (
                                     <Box
                                       sx={{
@@ -582,8 +631,13 @@ export default function DetailPage() {
                                           key={value}
                                           label={value}
                                           sx={{
-                                            background: "#00A3BF",
-                                            // backgroundColor: "#148291",
+                                            // background: "#00A3BF",
+                                            padding: "2px 4px",
+                                            backgroundColor: "#148291",
+                                            fontStyle: "normal",
+                                            fontWeight: 400,
+                                            lineHeight: "24px",
+                                            height: 20,
                                             color: "#fff",
                                             borderRadius: "4px",
                                             fontSize: 12,
@@ -600,12 +654,12 @@ export default function DetailPage() {
                                   )}
                                   MenuProps={MenuProps}
                                 >
-                                  {names.map((name) => (
+                                  {eventnames.map((name) => (
                                     <MenuItem
+                                      className={classes.root}
                                       key={name}
                                       value={name}
-                                      style={getStyles(name, personName, theme)}
-                                      className={classes.root}
+                                      style={getStyles(name, eventName, theme)}
                                     >
                                       {name}
                                     </MenuItem>
@@ -617,7 +671,7 @@ export default function DetailPage() {
                         </StackItem>
                         <StackItem>
                           <Typography variant="caption">Action</Typography>
-                          <Search>
+                          {/* <Search>
                             <SearchIconWrapper>
                               <FilterAltOutlinedIcon fontSize="small" />
                             </SearchIconWrapper>
@@ -625,7 +679,64 @@ export default function DetailPage() {
                               // placeholder="Search…"
                               inputProps={{ "aria-label": "search" }}
                             />
-                          </Search>
+                          </Search> */}
+                          <FormControl sx={{ m: 0, width: 120 }}>
+                            <Select
+                              labelId="demo-multiple-chip-label"
+                              id="demo-multiple-chip"
+                              multiple
+                              value={actionName}
+                              input={<BootstrapInput />}
+                              onChange={handleChangeActionName}
+                              sx={{ padding: 0, borderRadius: 6 }}
+                              renderValue={(selected) => (
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    flexWrap: "wrap",
+                                    gap: 0.5
+                                  }}
+                                >
+                                  {selected.map((value) => (
+                                    <Chip
+                                      key={value}
+                                      label={value}
+                                      sx={{
+                                        // background: "#00A3BF",
+                                        padding: "2px 4px",
+                                        backgroundColor: "#148291",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        lineHeight: "24px",
+                                        height: 20,
+                                        color: "#fff",
+                                        borderRadius: "4px",
+                                        fontSize: 12,
+                                        "& .MuiChip-deleteIconColorDefault.MuiChip-deleteIconFilledColorDefault.css-i4bv87-MuiSvgIcon-root": {
+                                          fontSize: 12,
+                                          color: "#fff"
+                                        }
+                                      }}
+                                      onClick={handleClick}
+                                      onDelete={handleDelete}
+                                    />
+                                  ))}
+                                </Box>
+                              )}
+                              MenuProps={MenuProps}
+                            >
+                              {actionnames.map((name) => (
+                                <MenuItem
+                                  className={classes.root}
+                                  key={name}
+                                  value={name}
+                                  style={getStyles(name, actionnames, theme)}
+                                >
+                                  {name}
+                                </MenuItem>
+                              ))}
+                            </Select>
+                          </FormControl>
                         </StackItem>
                         <StackItem>
                           <Typography variant="caption">Entity</Typography>
@@ -679,22 +790,22 @@ export default function DetailPage() {
                                 {/* <TableHead>
                                   <TableRow>
                                     <StyledTableCell>Date</StyledTableCell>
-                                    <StyledTableCell align="right">
+                                    <StyledTableCell align="left">
                                       ID
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">
+                                    <StyledTableCell align="left">
                                       Entity Type
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">
+                                    <StyledTableCell align="left">
                                       Entity
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">
+                                    <StyledTableCell align="left">
                                       Action
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">
+                                    <StyledTableCell align="left">
                                       User
                                     </StyledTableCell>
-                                    <StyledTableCell align="right"></StyledTableCell>
+                                    <StyledTableCell align="left"></StyledTableCell>
                                   </TableRow>
                                 </TableHead> */}
                                 <TableBody sx={{ maxHeight: 120 }}>
@@ -729,25 +840,26 @@ export default function DetailPage() {
                                       <StyledTableCell
                                         component="th"
                                         scope="row"
+                                        width="100px"
                                       >
                                         {row.date}
                                       </StyledTableCell>
-                                      <StyledTableCell align="right">
+                                      <StyledTableCell align="left">
                                         {row.id}
                                       </StyledTableCell>
-                                      <StyledTableCell align="right">
+                                      <StyledTableCell align="left">
                                         {row.entityType}
                                       </StyledTableCell>
-                                      <StyledTableCell align="right">
+                                      <StyledTableCell align="left">
                                         {row.entity}
                                       </StyledTableCell>
-                                      <StyledTableCell align="right">
+                                      <StyledTableCell align="left">
                                         {row.action}
                                       </StyledTableCell>
-                                      <StyledTableCell align="right">
+                                      <StyledTableCell align="left">
                                         {row.user}
                                       </StyledTableCell>
-                                      {/* <StyledTableCell align="right">
+                                      {/* <StyledTableCell align="left">
                                     <MoreVertIcon
                                       sx={{ }}
                                       fontSize="small"
